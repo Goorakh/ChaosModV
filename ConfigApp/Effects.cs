@@ -335,6 +335,7 @@ namespace ConfigApp
             EFFECT_MISC_GET_TOWED,
             EFFECT_BLOODY_PEDS,
             EFFECT_WEIRD_PITCH,
+            EFFECT_SPINNING_PROPS,
             EFFECT_SIDEWAYS_GRAVITY,
             EFFECT_PEDS_PROP_HUNT,
             EFFECT_PEDS_GRAPPLE_GUNS,
@@ -644,6 +645,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PEDS_GRAPPLE_GUNS, new EffectInfo("Gravity Guns", EffectCategory.PEDS, "peds_grapple_guns", true)},
             {EffectType.EFFECT_PEDS_PROP_HUNT, new EffectInfo("Prop Hunt", EffectCategory.PEDS, "peds_prop_hunt", true)},
             {EffectType.EFFECT_SIDEWAYS_GRAVITY, new EffectInfo("Sideways Gravity", EffectCategory.MISC, "misc_sideways_gravity", true, true)},
+            {EffectType.EFFECT_SPINNING_PROPS, new EffectInfo("Spin World", EffectCategory.MISC, "misc_spinning_props", true)},
         };
     }
 }
