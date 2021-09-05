@@ -99,6 +99,7 @@
     <ClCompile Include="Effects\db\Misc\MiscDVDScreensaver.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscEarthquake.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscFpsLimit.cpp" />
+    <ClCompile Include="Effects\db\Misc\MiscGhostWorld.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscHighPitch.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscLowPitch.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscPause.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="Effects\db\Peds\PedsMercenaries.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscOilLeaks.cpp" />
     <ClCompile Include="Effects\db\Player\PlayerIllegalInnocence.cpp" />
+    <ClCompile Include="Effects\db\Player\PlayerSpawnCloneArmy.cpp" />
     <ClCompile Include="Effects\db\Player\PlayerVR.cpp" />
     <ClCompile Include="Effects\db\Player\PlayerSpinCam.cpp" />
     <ClCompile Include="Effects\db\Player\PlayerZoomZoomCam.cpp" />
