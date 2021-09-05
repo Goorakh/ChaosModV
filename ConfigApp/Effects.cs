@@ -335,6 +335,7 @@ namespace ConfigApp
             EFFECT_MISC_GET_TOWED,
             EFFECT_BLOODY_PEDS,
             EFFECT_WEIRD_PITCH,
+            EFFECT_PEDS_PROP_HUNT,
             EFFECT_PEDS_GRAPPLE_GUNS,
             EFFECT_MISC_GHOST_WORLD,
             EFFECT_PLAYER_CLONE_ARMY,
@@ -640,6 +641,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PLAYER_CLONE_ARMY, new EffectInfo("Spawn Clone Army", EffectCategory.PLAYER, "player_clone_army")},
             {EffectType.EFFECT_MISC_GHOST_WORLD, new EffectInfo("Ghost World", EffectCategory.MISC, "misc_ghost_world", true)},
             {EffectType.EFFECT_PEDS_GRAPPLE_GUNS, new EffectInfo("Gravity Guns", EffectCategory.PEDS, "peds_grapple_guns", true)},
+            {EffectType.EFFECT_PEDS_PROP_HUNT, new EffectInfo("Prop Hunt", EffectCategory.PEDS, "peds_prop_hunt", true)},
         };
     }
 }
