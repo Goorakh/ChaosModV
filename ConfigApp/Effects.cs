@@ -641,11 +641,11 @@ namespace ConfigApp
             {EffectType.EFFECT_BLOODY_PEDS, new EffectInfo("Everyone Is Bloody", EffectCategory.PEDS, "peds_bloody")},
             {EffectType.EFFECT_WEIRD_PITCH, new EffectInfo("Weird Pitch", EffectCategory.MISC, "misc_weirdpitch", true)},
             {EffectType.EFFECT_PLAYER_CLONE_ARMY, new EffectInfo("Spawn Clone Army", EffectCategory.PLAYER, "player_clone_army")},
-            {EffectType.EFFECT_MISC_GHOST_WORLD, new EffectInfo("Ghost World", EffectCategory.MISC, "misc_ghost_world", true)},
+            {EffectType.EFFECT_MISC_GHOST_WORLD, new EffectInfo("Ghost Town", EffectCategory.MISC, "misc_ghost_world", true)},
             {EffectType.EFFECT_PEDS_GRAPPLE_GUNS, new EffectInfo("Gravity Guns", EffectCategory.PEDS, "peds_grapple_guns", true)},
             {EffectType.EFFECT_PEDS_PROP_HUNT, new EffectInfo("Prop Hunt", EffectCategory.PEDS, "peds_prop_hunt", true)},
             {EffectType.EFFECT_SIDEWAYS_GRAVITY, new EffectInfo("Sideways Gravity", EffectCategory.MISC, "misc_sideways_gravity", true, true)},
-            {EffectType.EFFECT_SPINNING_PROPS, new EffectInfo("Spin World", EffectCategory.MISC, "misc_spinning_props", true)},
+            {EffectType.EFFECT_SPINNING_PROPS, new EffectInfo("Spinning Props", EffectCategory.MISC, "misc_spinning_props", true)},
         };
     }
 }
