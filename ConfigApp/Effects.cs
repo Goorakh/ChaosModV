@@ -341,6 +341,7 @@ namespace ConfigApp
             EFFECT_PEDS_GRAPPLE_GUNS,
             EFFECT_MISC_GHOST_WORLD,
             EFFECT_PLAYER_CLONE_ARMY,
+            EFFECT_PEDS_HEADLESS,
             _EFFECT_ENUM_MAX
         }
 
@@ -646,6 +647,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PEDS_PROP_HUNT, new EffectInfo("Prop Hunt", EffectCategory.PEDS, "peds_prop_hunt", true)},
             {EffectType.EFFECT_SIDEWAYS_GRAVITY, new EffectInfo("Sideways Gravity", EffectCategory.MISC, "misc_sideways_gravity", true, true)},
             {EffectType.EFFECT_SPINNING_PROPS, new EffectInfo("Spinning Props", EffectCategory.MISC, "misc_spinning_props", true)},
+            {EffectType.EFFECT_PEDS_HEADLESS, new EffectInfo("Mannequins", EffectCategory.PEDS, "peds_headless", true)},
         };
     }
 }
