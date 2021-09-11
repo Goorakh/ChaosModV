@@ -9,7 +9,7 @@ static void OnTick()
 	for (Entity prop : GetAllProps())
 	{
 		Vector3 rotation = GET_ENTITY_ROTATION(prop, 2);
-		SET_ENTITY_ROTATION(prop, rotation.x, rotation.y, rotation.z + 5.f, 2, true);
+		SET_ENTITY_ROTATION(prop, rotation.x, rotation.y, rotation.z + (5.f * g_MetaInfo.m_fChaosMultiplier), 2, true);
 	}
 }
 

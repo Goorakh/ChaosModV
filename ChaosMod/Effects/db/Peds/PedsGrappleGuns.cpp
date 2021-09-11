@@ -87,7 +87,7 @@ static void OnTick()
 
 				Vector3 addVelocity = (GET_ENTITY_COORDS(ped, true) - impactCoords);
 				addVelocity = addVelocity / addVelocity.Length(); // Normalize vector
-				addVelocity = addVelocity * 25.f;
+				addVelocity = addVelocity * 25.f * g_MetaInfo.m_fChaosMultiplier;
 
 				Vector3 newVelocity = entityVelocity + addVelocity;
 				SET_ENTITY_VELOCITY(entity, newVelocity.x, newVelocity.y, newVelocity.z);

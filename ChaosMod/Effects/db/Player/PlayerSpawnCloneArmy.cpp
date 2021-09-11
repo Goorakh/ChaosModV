@@ -33,7 +33,7 @@ static void OnStart()
 	std::vector<Ped> clones;
 
 	int count = 3;
-	for (int i = 0; i < NUM_CLONES; i++)
+	for (int i = 0; i < NUM_CLONES * g_MetaInfo.m_fChaosMultiplier; i++)
 	{
 		Ped clone = CreatePoolPed(playerPedType, playerModel, playerCoords.x + g_Random.GetRandomFloat(-2, 2), playerCoords.y + g_Random.GetRandomFloat(-2, 2), playerCoords.z, playerHeading);
 		CLONE_PED_TO_TARGET(playerPed, clone);

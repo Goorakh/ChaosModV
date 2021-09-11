@@ -343,6 +343,7 @@ namespace ConfigApp
             EFFECT_PLAYER_CLONE_ARMY,
             EFFECT_PEDS_HEADLESS,
             EFFECT_PEDS_2X_ANIMATION_SPEED,
+            EFFECT_META_2X_CHAOS,
             _EFFECT_ENUM_MAX
         }
 
@@ -650,6 +651,7 @@ namespace ConfigApp
             {EffectType.EFFECT_SPINNING_PROPS, new EffectInfo("Spinning Props", EffectCategory.MISC, "misc_spinning_props", true)},
             {EffectType.EFFECT_PEDS_HEADLESS, new EffectInfo("Mannequins", EffectCategory.PEDS, "peds_headless", true)},
             {EffectType.EFFECT_PEDS_2X_ANIMATION_SPEED, new EffectInfo("2x Animation Speed", EffectCategory.PEDS, "peds_2x_animation_speed", true)},
+            {EffectType.EFFECT_META_2X_CHAOS, new EffectInfo("2x Chaos", EffectCategory.META, "meta_2x_chaos", true)},
         };
     }
 }
