@@ -71,7 +71,7 @@ static void OnTickRandom()
 	// Note: setting the compare to a low number (e.g. < 1000, or faster than once per sec) could cause the
 	// effect to flicker the screen, which is a known trigger for some types of motion sickness and epilepsy
 	
-	if (lastTick < curTick - 1000)
+	if (lastTick < curTick - (1000 / g_MetaInfo.m_fChaosMultiplier))
 	{
 		lastTick = curTick;
 

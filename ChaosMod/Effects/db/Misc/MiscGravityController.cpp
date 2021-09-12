@@ -114,24 +114,26 @@ static void OnTickSideways()
 {
 	Memory::SetGravityLevel(0.f);
 
+	Vector3 gravityForce = sidewaysGravityForce * g_MetaInfo.m_fChaosMultiplier;
+
 	for (auto ped : GetAllPeds())
 	{
 		if (!IS_PED_IN_ANY_VEHICLE(ped, false))
 		{
 			SET_PED_TO_RAGDOLL(ped, 1000, 1000, 0, true, true, false);
 
-			APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(ped, 1, sidewaysGravityForce.x, sidewaysGravityForce.y, sidewaysGravityForce.z, false, false, true, false);
+			APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(ped, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
 		}
 	}
 
 	for (auto object : GetAllProps())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(object, 1, sidewaysGravityForce.x, sidewaysGravityForce.y, sidewaysGravityForce.z, false, false, true, false);
+		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(object, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
 	}
 
 	for (auto veh : GetAllVehs())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(veh, 1, sidewaysGravityForce.x, sidewaysGravityForce.y, sidewaysGravityForce.z, false, false, true, false);
+		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(veh, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
 	}
 }
 
