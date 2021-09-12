@@ -344,6 +344,7 @@ namespace ConfigApp
             EFFECT_PEDS_HEADLESS,
             EFFECT_PEDS_2X_ANIMATION_SPEED,
             EFFECT_META_2X_CHAOS,
+            EFFECT_PEDS_BLOCKHEAD,
             _EFFECT_ENUM_MAX
         }
 
@@ -652,6 +653,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PEDS_HEADLESS, new EffectInfo("Mannequins", EffectCategory.PEDS, "peds_headless", true)},
             {EffectType.EFFECT_PEDS_2X_ANIMATION_SPEED, new EffectInfo("2x Animation Speed", EffectCategory.PEDS, "peds_2x_animation_speed", true)},
             {EffectType.EFFECT_META_2X_CHAOS, new EffectInfo("2x Chaos", EffectCategory.META, "meta_2x_chaos", true)},
+            {EffectType.EFFECT_PEDS_BLOCKHEAD, new EffectInfo("Blockhead", EffectCategory.PEDS, "peds_blockhead", true)},
         };
     }
 }
