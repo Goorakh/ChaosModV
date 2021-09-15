@@ -30,8 +30,10 @@ inline Vehicle CreateTempVehicleOnPlayerPos(Hash ulModel, float fHeading)
 	return veh;
 }
 
-inline void SetSurroundingPedsInVehicles(Hash vehicleHash, int maxDistance)
+inline std::vector<Vehicle> SetSurroundingPedsInVehicles(Hash vehicleHash, int maxDistance)
 {
+	std::vector<Vehicle> spawnedVehs;
+
 	Ped playerPed = PLAYER_PED_ID();
 	Vector3 playerPos = GET_ENTITY_COORDS(playerPed, true);
 
@@ -67,8 +69,12 @@ inline void SetSurroundingPedsInVehicles(Hash vehicleHash, int maxDistance)
 				SET_VEHICLE_ENGINE_ON(veh, true, true, true);
 				SET_ENTITY_VELOCITY(veh, vel.x, vel.y, vel.z);
 
+				spawnedVehs.push_back(veh);
+
 				TASK_VEHICLE_MISSION_PED_TARGET(ped, veh, playerPed, 13, 9999.f, 4176732, .0f, .0f, false);
 			}
 		}
 	}
+
+	return spawnedVehs;
 }
