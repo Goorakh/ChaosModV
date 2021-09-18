@@ -351,15 +351,15 @@ static void OnStartFakeTp()
 	Vector3 destinationPos = selectedLocationInfo.playerPos;
 	if (playerVeh)
 	{
-		if (!selectedLocationInfo.vehiclePos.IsDefault()) {
+		if (!selectedLocationInfo.vehiclePos.IsDefault())
+		{
 			destinationPos = selectedLocationInfo.vehiclePos;
 		}
+
 		SET_ENTITY_INVINCIBLE(playerVeh, true);
 	}
 
-	SET_PLAYER_WANTED_LEVEL(player, 0, false);
-	SET_PLAYER_WANTED_LEVEL_NOW(player, false);
-	SET_MAX_WANTED_LEVEL(0);
+	int oldWantedLevel = GET_PLAYER_WANTED_LEVEL(player);
 
 	TeleportPlayer(destinationPos);
 
@@ -375,7 +375,8 @@ static void OnStartFakeTp()
 		SET_ENTITY_INVINCIBLE(playerVeh, false);
 	}
 
-	SET_MAX_WANTED_LEVEL(5);
+	SET_PLAYER_WANTED_LEVEL(player, oldWantedLevel, false);
+	SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
 
 	Hooks::DisableScriptThreadBlock();
 }
