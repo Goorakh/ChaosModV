@@ -2,13 +2,6 @@
 
 #include "Memory/Hooks/AudioPitchHook.h"
 
-static float timer;
-
-static void OnStart()
-{
-	timer = 0;
-}
-
 static void OnStop()
 {
 	Hooks::ResetAudioPitch();
@@ -16,11 +9,10 @@ static void OnStop()
 
 static void OnTick()
 {
-	Hooks::SetAudioPitch(SIN(timer * g_MetaInfo.m_fChaosMultiplier) * 400.f * g_MetaInfo.m_fChaosMultiplier);
-	timer += GET_FRAME_TIME();
+	Hooks::SetAudioPitch(SIN((GET_GAME_TIMER() / 7.f) * g_MetaInfo.m_fChaosMultiplier) * 1000.f * g_MetaInfo.m_fChaosMultiplier);
 }
 
-static RegisterEffect registerEffect(EFFECT_MISC_SIN_PITCH, OnStart, OnStop, OnTick, EffectInfo
+static RegisterEffect registerEffect(EFFECT_MISC_SIN_PITCH, nullptr, OnStop, OnTick, EffectInfo
 	{
 		.Name = "Wave Pitch",
 		.Id = "misc_sinpitch",
