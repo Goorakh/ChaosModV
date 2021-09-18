@@ -56,7 +56,7 @@
 #include "Util/Natives.h"
 #include "Util/Random.h"
 #include "Util/Weapon.h"
-#include "Util/CameraEffect.h"
+#include "Util/SharedScriptCam.h"
 
 #include "../vendor/scripthookv/inc/main.h"
 #include "../vendor/scripthookv/inc/natives.h"

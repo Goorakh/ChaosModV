@@ -3,21 +3,13 @@
 */
 
 #include <stdafx.h>
-static Camera zoomCamera = 0;
+
 static float camZoom = 80.f;
 static float camZoomRate = 0.6f;
 
-static void UpdateCamera()
-{
-    Vector3 coord = GET_GAMEPLAY_CAM_COORD();
-    Vector3 rot = GET_GAMEPLAY_CAM_ROT(2);
-    SET_CAM_PARAMS(zoomCamera, coord.x, coord.y, coord.z, rot.x, rot.y, rot.z, camZoom, 0, 1, 1, 2);
-}
-
 static void OnStart()
 {
-    zoomCamera = CREATE_CAM("DEFAULT_SCRIPTED_CAMERA", 1);
-    RENDER_SCRIPT_CAMS(true, true, 10, 1, 1, 1);
+    SharedScriptCam::RegisterUse();
     camZoom = 80.f;
 }
 
@@ -37,16 +29,13 @@ static void OnTick()
         camZoom += camZoomRate;
     }
 
-    SET_CAM_ACTIVE(zoomCamera, true);
-    UpdateCamera();
+    SharedScriptCam::SetFOV(camZoom);
 }
 
 static void OnStop()
 {
-    SET_CAM_ACTIVE(zoomCamera, false);
-    RENDER_SCRIPT_CAMS(false, true, 700, 1, 1, 1);
-    DESTROY_CAM(zoomCamera, true);
-    zoomCamera = 0;
+    SharedScriptCam::ResetFOV();
+    SharedScriptCam::UnregisterUse();
 }
 
 static RegisterEffect registerEffect(EFFECT_PLAYER_ZOOMZOOM_CAM, OnStart, OnStop, OnTick, EffectInfo
@@ -55,6 +44,6 @@ static RegisterEffect registerEffect(EFFECT_PLAYER_ZOOMZOOM_CAM, OnStart, OnStop
         .Id = "player_zoomzoom_cam",
         .IsTimed = true,
         .IsShortDuration = true,
-        .IncompatibleWith = { EFFECT_FLIP_CAMERA, EFFECT_PLAYER_GTA_2, EFFECT_PLAYER_QUAKE_FOV, EFFECT_PLAYER_BINOCULARS }
+        .IncompatibleWith = { EFFECT_PLAYER_GTA_2, EFFECT_PLAYER_QUAKE_FOV, EFFECT_PLAYER_BINOCULARS }
     }
 );

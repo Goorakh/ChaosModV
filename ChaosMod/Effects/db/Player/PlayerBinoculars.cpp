@@ -6,18 +6,18 @@
 
 static void OnStart()
 {
-    RegisterModCamUsage();
+    SharedScriptCam::RegisterUse();
 }
 
 static void OnTick()
 {
-    SetModCamFOV(10.f);
+    SharedScriptCam::SetFOV(10.f);
 }
 
 static void OnStop()
 {
-    ResetModCamFOV();
-    UnregisterModCamUsage();
+    SharedScriptCam::ResetFOV();
+    SharedScriptCam::UnregisterUse();
 }
 
 static RegisterEffect registerEffect(EFFECT_PLAYER_BINOCULARS, OnStart, OnStop, OnTick, EffectInfo
@@ -26,6 +26,6 @@ static RegisterEffect registerEffect(EFFECT_PLAYER_BINOCULARS, OnStart, OnStop, 
         .Id = "player_binoculars",
         .IsTimed = true,
         .IsShortDuration = true,
-        .IncompatibleWith = { EFFECT_FLIP_CAMERA, EFFECT_PLAYER_GTA_2, EFFECT_PLAYER_QUAKE_FOV, EFFECT_PLAYER_ZOOMZOOM_CAM }
+        .IncompatibleWith = { EFFECT_PLAYER_GTA_2, EFFECT_PLAYER_QUAKE_FOV, EFFECT_PLAYER_ZOOMZOOM_CAM }
     }
 );
