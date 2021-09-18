@@ -27,6 +27,6 @@ static RegisterEffect registerEffect(EFFECT_LOW_PITCH, OnStart, OnStop, OnTick, 
 		.Name = "Low Pitch",
 		.Id = "misc_lowpitch",
 		.IsTimed = true,
-		.IncompatibleWith = { EFFECT_HIGH_PITCH }
+		.IncompatibleWith = { EFFECT_GAMESPEED_X02, EFFECT_GAMESPEED_X05, EFFECT_HIGH_PITCH, EFFECT_MISC_SIN_PITCH, EFFECT_WEIRD_PITCH, EFFECT_PEDS_MINIONS }
 	}
 );

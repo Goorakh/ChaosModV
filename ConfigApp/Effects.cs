@@ -346,6 +346,7 @@ namespace ConfigApp
             EFFECT_META_2X_CHAOS,
             EFFECT_PEDS_BLOCKHEAD,
             EFFECT_MISC_PED_RAIN,
+            EFFECT_MISC_SIN_PITCH,
             _EFFECT_ENUM_MAX
         }
 
@@ -656,6 +657,7 @@ namespace ConfigApp
             {EffectType.EFFECT_META_2X_CHAOS, new EffectInfo("2x Chaos", EffectCategory.META, "meta_2x_chaos", true)},
             {EffectType.EFFECT_PEDS_BLOCKHEAD, new EffectInfo("Blockhead", EffectCategory.PEDS, "peds_blockhead", true)},
             {EffectType.EFFECT_MISC_PED_RAIN, new EffectInfo("It's Raining Men", EffectCategory.MISC, "misc_ped_rain", true)},
+            {EffectType.EFFECT_MISC_SIN_PITCH, new EffectInfo("Wave Pitch", EffectCategory.MISC, "misc_sinpitch", true)},
         };
     }
 }
