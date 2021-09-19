@@ -98,10 +98,7 @@ static RegisterEffect registerEffect4(EFFECT_TP_MOUNTCHILLIAD, OnStartMountChill
 );
 static void OnStartSkyFall()
 {
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
-	{
-		TeleportPlayer(935.f, 3800.f * g_MetaInfo.m_fChaosMultiplier, 2300.f);
-	}
+	TeleportPlayer(935.f, 3800.f * g_MetaInfo.m_fChaosMultiplier, 2300.f);
 }
 
 static RegisterEffect registerEffect5(EFFECT_TP_SKYFALL, OnStartSkyFall, EffectInfo
