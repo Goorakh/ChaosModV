@@ -349,6 +349,7 @@ namespace ConfigApp
             EFFECT_MISC_SIN_PITCH,
             EFFECT_ANGRY_SIMEON,
             EFFECT_VEHS_BEDMOBILE,
+            EFFECT_HOT_COUGARS,
             _EFFECT_ENUM_MAX
         }
 
@@ -662,6 +663,7 @@ namespace ConfigApp
             {EffectType.EFFECT_MISC_SIN_PITCH, new EffectInfo("Wave Pitch", EffectCategory.MISC, "misc_sinpitch", true)},
             {EffectType.EFFECT_ANGRY_SIMEON, new EffectInfo("Legitimate Businessman", EffectCategory.PEDS, "peds_angrysimeon")},
             {EffectType.EFFECT_VEHS_BEDMOBILE, new EffectInfo("Spawn Bedmobile", EffectCategory.VEHICLE, "vehs_spawn_bedmobile")},
+            {EffectType.EFFECT_HOT_COUGARS, new EffectInfo("Hot Cougars In Your Area", EffectCategory.PEDS, "peds_hotcougars", true, true)},
         };
     }
 }
