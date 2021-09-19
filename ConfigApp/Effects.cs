@@ -350,6 +350,7 @@ namespace ConfigApp
             EFFECT_ANGRY_SIMEON,
             EFFECT_VEHS_BEDMOBILE,
             EFFECT_HOT_COUGARS,
+            EFFECT_LEANED_CAMERA,
             _EFFECT_ENUM_MAX
         }
 
@@ -664,6 +665,7 @@ namespace ConfigApp
             {EffectType.EFFECT_ANGRY_SIMEON, new EffectInfo("Legitimate Businessman", EffectCategory.PEDS, "peds_angrysimeon")},
             {EffectType.EFFECT_VEHS_BEDMOBILE, new EffectInfo("Spawn Bedmobile", EffectCategory.VEHICLE, "vehs_spawn_bedmobile")},
             {EffectType.EFFECT_HOT_COUGARS, new EffectInfo("Hot Cougars In Your Area", EffectCategory.PEDS, "peds_hotcougars", true, true)},
+            {EffectType.EFFECT_LEANED_CAMERA, new EffectInfo("Leaned Camera", EffectCategory.PLAYER, "player_leaned_camera", true, true)},
         };
     }
 }
