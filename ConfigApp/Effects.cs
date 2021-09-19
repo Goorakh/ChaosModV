@@ -348,6 +348,7 @@ namespace ConfigApp
             EFFECT_MISC_PED_RAIN,
             EFFECT_MISC_SIN_PITCH,
             EFFECT_ANGRY_SIMEON,
+            EFFECT_VEHS_BEDMOBILE,
             _EFFECT_ENUM_MAX
         }
 
@@ -660,6 +661,7 @@ namespace ConfigApp
             {EffectType.EFFECT_MISC_PED_RAIN, new EffectInfo("It's Raining Men", EffectCategory.MISC, "misc_ped_rain", true)},
             {EffectType.EFFECT_MISC_SIN_PITCH, new EffectInfo("Wave Pitch", EffectCategory.MISC, "misc_sinpitch", true)},
             {EffectType.EFFECT_ANGRY_SIMEON, new EffectInfo("Legitimate Businessman", EffectCategory.PEDS, "peds_angrysimeon")},
+            {EffectType.EFFECT_VEHS_BEDMOBILE, new EffectInfo("Spawn Bedmobile", EffectCategory.VEHICLE, "vehs_spawn_bedmobile")},
         };
     }
 }
