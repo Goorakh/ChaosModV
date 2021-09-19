@@ -347,6 +347,7 @@ namespace ConfigApp
             EFFECT_PEDS_BLOCKHEAD,
             EFFECT_MISC_PED_RAIN,
             EFFECT_MISC_SIN_PITCH,
+            EFFECT_ANGRY_SIMEON,
             _EFFECT_ENUM_MAX
         }
 
@@ -658,6 +659,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PEDS_BLOCKHEAD, new EffectInfo("Blockhead", EffectCategory.PEDS, "peds_blockhead", true)},
             {EffectType.EFFECT_MISC_PED_RAIN, new EffectInfo("It's Raining Men", EffectCategory.MISC, "misc_ped_rain", true)},
             {EffectType.EFFECT_MISC_SIN_PITCH, new EffectInfo("Wave Pitch", EffectCategory.MISC, "misc_sinpitch", true)},
+            {EffectType.EFFECT_ANGRY_SIMEON, new EffectInfo("Legitimate Businessman", EffectCategory.PEDS, "peds_angrysimeon")},
         };
     }
 }
