@@ -352,6 +352,7 @@ namespace ConfigApp
             EFFECT_HOT_COUGARS,
             EFFECT_LEANED_CAMERA,
             EFFECT_PLAYER_MONSTER_HEAD,
+            EFFECT_PEDS_SERIOUS_KAMIKAZES,
             _EFFECT_ENUM_MAX
         }
 
@@ -668,6 +669,7 @@ namespace ConfigApp
             {EffectType.EFFECT_HOT_COUGARS, new EffectInfo("Hot Cougars In Your Area", EffectCategory.PEDS, "peds_hotcougars", true, true)},
             {EffectType.EFFECT_LEANED_CAMERA, new EffectInfo("Leaned Camera", EffectCategory.PLAYER, "player_leaned_camera", true, true)},
             {EffectType.EFFECT_PLAYER_MONSTER_HEAD, new EffectInfo("Monster Head", EffectCategory.PLAYER, "player_monster_head")},
+            {EffectType.EFFECT_PEDS_SERIOUS_KAMIKAZES, new EffectInfo("Serious Kamikazes", EffectCategory.PEDS, "peds_seriouskamikazes", true, true)},
         };
     }
 }
