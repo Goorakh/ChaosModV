@@ -16,6 +16,7 @@ static void OnTick()
 				CLEAR_PED_TASKS_IMMEDIATELY(playerPed);
 			}
 
+			SET_PED_CAN_RAGDOLL(playerPed, true);
 			SET_PED_TO_RAGDOLL(playerPed, 500 * g_MetaInfo.m_fChaosMultiplier, 1000 * g_MetaInfo.m_fChaosMultiplier, 0, true, true, false);
 
 			CREATE_NM_MESSAGE(true, 0);
