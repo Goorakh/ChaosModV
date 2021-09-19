@@ -432,8 +432,7 @@ static void OnStartFakeTp()
 		{
 			continue;
 		}
-		
-		if (type == EFFECT_TP_WAYPOINT && !HasValidWaypointForTp())
+		else if (type == EFFECT_TP_WAYPOINT && !HasValidWaypointForTp())
 		{
 			continue;
 		}
