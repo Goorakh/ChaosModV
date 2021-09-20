@@ -78,13 +78,8 @@ static void OnTick()
     {
         entityToCircle = GET_VEHICLE_PED_IS_IN(player, false);
     }
-    Vector3 pos = GET_ENTITY_COORDS(entityToCircle, false);
-    Vector3 min;
-    Vector3 max;
-    GET_MODEL_DIMENSIONS(GET_ENTITY_MODEL(entityToCircle), &min, &max);
-    float height = max.z - min.z;
-    float zCorrection = (-height / 2) + 0.3;
     float heading = GET_ENTITY_HEADING(entityToCircle);
+
     for (std::vector<OrbitPed>::iterator it = orbitingPeds.begin(); it != orbitingPeds.end(); )
     {
         OrbitPed pedInfo = *it;
@@ -103,7 +98,12 @@ static void OnTick()
         }
         else
         {
-            Vector3 coord = GetCoordAround(entityToCircle, heading - pedInfo.angle, 3, zCorrection, true);
+            Vector3 min;
+            Vector3 max;
+            GET_MODEL_DIMENSIONS(GET_ENTITY_MODEL(pedInfo.ped), &min, &max);
+            float height = max.z - min.z;
+
+            Vector3 coord = GetCoordAround(entityToCircle, heading - pedInfo.angle, 3, -(height / 2.f), true);
             SET_ENTITY_COORDS(pedInfo.ped, coord.x, coord.y, coord.z , false, false, false, false);
             SET_ENTITY_HEADING(pedInfo.ped, pedInfo.angle + 90); // Always face away from player
             TASK_STAND_STILL(pedInfo.ped, 5000);
