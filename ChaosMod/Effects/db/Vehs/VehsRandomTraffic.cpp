@@ -29,6 +29,8 @@ static void OnTick()
 			if (GET_VEHICLE_WINDOW_TINT(veh) != 3)
 			{
 				replacedVehicles.push_back(ReplaceVehicle(veh));
+
+				WAIT(10);
 			}
 		}
 	}
