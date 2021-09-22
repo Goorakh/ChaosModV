@@ -58,6 +58,11 @@ static void OnStart()
 				REMOVE_CUTSCENE();
 			}
 		}
+
+		if (i + 1 < g_MetaInfo.m_fChaosMultiplier)
+		{
+			WAIT(3000);
+		}
 	}
 
 	Hooks::DisableScriptThreadBlock();
