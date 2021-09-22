@@ -93,6 +93,179 @@ inline void SetSurroundingPedsInVehicles(Hash vehicleHash, int maxDistance)
 	}
 }
 
+static const int vehicleColorIndices[] =
+{
+	120, // Chrome
+
+	// Classic/Metallic:
+	0,   // Black
+	147, // Carbon Black
+	1,   // Graphite
+	11,  // Anhracite Black
+	2,   // Black Steel
+	3,   // Dark Steel
+	4,   // Silver
+	5,   // Bluish Silver
+	6,   // Rolled Steel
+	7,   // Shadow Silver
+	8,   // Stone Silver
+	9,   // Midnight Silver
+	10,  // Cast Iron Silver
+	27,  // Red
+	28,  // Torino Red
+	29,  // Formula Red
+	150, // Lava Red
+	30,  // Blaze Red
+	31,  // Grace Red
+	32,  // Garnet Red
+	33,  // Sunset Red
+	34,  // Cabernet Red
+	143, // Wine Red
+	35,  // Candy Red
+	135, // Hot Pink
+	137, // Pfsiter Pink
+	136, // Salmon Pink
+	36,  // Sunrise Orange
+	38,  // Orange
+	138, // Bright Orange
+	99,  // Gold
+	90,  // Bronze
+	88,  // Yellow
+	89,  // Race Yellow
+	91,  // Dew Yellow
+	49,  // Dark Green
+	50,  // Racing Green
+	51,  // Sea Green
+	52,  // Olive Green
+	53,  // Bright Green
+	54,  // Gasoline Green
+	92,  // Lime Green
+	141, // Midnight Blue
+	61,  // Galaxy Blue
+	62,  // Dark Blue
+	63,  // Saxon Blue
+	64,  // Blue
+	65,  // Mariner Blue
+	66,  // Harbor Blue
+	67,  // Diamond Blue
+	68,  // Surf Blue
+	69,  // Nautical Blue
+	73,  // Racing Blue
+	70,  // Ultra Blue
+	74,  // Light Blue
+	96,  // Chocolate Brown
+	101, // Bison Brown
+	95,  // Creeen Brown
+	94,  // Feltzer Brown
+	97,  // Maple Brown
+	103, // Beechwood Brown
+	104, // Sienna Brown
+	98,  // Saddle Brown
+	100, // Moss Brown
+	102, // Woodbeech Brown
+	99,  // Straw Brown
+	105, // Sandy Brown
+	106, // Bleached Brown
+	71,  // Schafter Purple
+	72,  // Spinnaker Purple
+	142, // Midnight Purple
+	145, // Bright Purple
+	107, // Cream
+	111, // Ice White
+	112, // Frost White
+
+	// Matte:
+	12,  // Black
+	13,  // Gray
+	14,  // Light Gray
+	131, // Ice White
+	83,  // Blue
+	82,  // Dark Blue
+	84,  // Midnight Blue
+	149, // Midnight Purple
+	148, // Schafter Purple
+	39,  // Red
+	40,  // Dark Red
+	41,  // Orange
+	42,  // Yellow
+	55,  // Lime Green
+	128, // Green
+	151, // Forest Green
+	155, // Foliage Green
+	152, // Olive Darb
+	153, // Dark Earth
+	154, // Desert Tan
+
+	// Metals:
+	117, // Brushed Steel
+	118, // Brushed Black Steel
+	119, // Brushed Aluminum
+	158, // Pure Gold
+	159, // Brushed Gold
+};
+
+inline void SetVehicleRandomUpgrades(Vehicle veh)
+{
+	SET_VEHICLE_MOD_KIT(veh, 0);
+
+	SET_VEHICLE_WHEEL_TYPE(veh, g_Random.GetRandomInt(0, 7));
+
+	for (int i = 0; i < 50; i++)
+	{
+		int max = GET_NUM_VEHICLE_MODS(veh, i);
+		if (max > 0)
+		{
+			SET_VEHICLE_MOD(veh, i, g_Random.GetRandomInt(0, max - 1), g_Random.GetRandomInt(0, 1));
+		}
+
+		TOGGLE_VEHICLE_MOD(veh, i, g_Random.GetRandomInt(0, 1));
+	}
+
+	SET_VEHICLE_TYRES_CAN_BURST(veh, g_Random.GetRandomInt(0, 1));
+	SET_VEHICLE_WINDOW_TINT(veh, g_Random.GetRandomInt(0, 6));
+
+	float customColorChance = 1.f;
+	if (g_Random.GetRandomInt(1, 3) == 1)
+	{
+		SET_VEHICLE_COLOURS(veh, vehicleColorIndices[g_Random.GetRandomInt(0, sizeof(vehicleColorIndices) / sizeof(*vehicleColorIndices) - 1)],
+								 vehicleColorIndices[g_Random.GetRandomInt(0, sizeof(vehicleColorIndices) / sizeof(*vehicleColorIndices) - 1)]);
+
+		customColorChance = .5f;
+	}
+
+	if (g_Random.GetRandomFloat(0.f, 1.f) <= customColorChance)
+	{
+		SET_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+		SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+	}
+	else
+	{
+		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh);
+		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh);
+	}
+
+	SET_VEHICLE_EXTRA_COLOURS(veh, vehicleColorIndices[g_Random.GetRandomInt(0, sizeof(vehicleColorIndices) / sizeof(*vehicleColorIndices) - 1)],
+								   vehicleColorIndices[g_Random.GetRandomInt(0, sizeof(vehicleColorIndices) / sizeof(*vehicleColorIndices) - 1)]);
+
+	for (int i = 0; i < 15; i++)
+	{
+		if (DOES_EXTRA_EXIST(veh, i))
+		{
+			SET_VEHICLE_EXTRA(veh, i, g_Random.GetRandomInt(0, 1));
+		}
+	}
+
+	_SET_VEHICLE_NEON_LIGHTS_COLOUR(veh, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+	for (int i = 0; i < 4; i++)
+	{
+		_SET_VEHICLE_NEON_LIGHT_ENABLED(veh, i, true);
+	}
+
+	_SET_VEHICLE_XENON_LIGHTS_COLOR(veh, g_Random.GetRandomInt(0, 12));
+
+	SET_VEHICLE_TYRE_SMOKE_COLOR(veh, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+}
+
 struct SeatPed
 {
 	Ped ped;
@@ -178,35 +351,7 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 		}
 	}
 
-	// Also apply random upgrades
-	SET_VEHICLE_MOD_KIT(newVehicle, 0);
-
-	SET_VEHICLE_WHEEL_TYPE(newVehicle, g_Random.GetRandomInt(0, 7));
-
-	for (int i = 0; i < 50; i++)
-	{
-		int max = GET_NUM_VEHICLE_MODS(newVehicle, i);
-		if (max > 0)
-		{
-			SET_VEHICLE_MOD(newVehicle, i, g_Random.GetRandomInt(0, max - 1), g_Random.GetRandomInt(0, 1));
-		}
-
-		TOGGLE_VEHICLE_MOD(newVehicle, i, g_Random.GetRandomInt(0, 1));
-	}
-
-	SET_VEHICLE_TYRES_CAN_BURST(newVehicle, g_Random.GetRandomInt(0, 1));
-	SET_VEHICLE_WINDOW_TINT(newVehicle, g_Random.GetRandomInt(0, 6));
-
-	SET_VEHICLE_CUSTOM_PRIMARY_COLOUR(newVehicle, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
-	SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(newVehicle, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
-
-	_SET_VEHICLE_NEON_LIGHTS_COLOUR(newVehicle, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
-	for (int i = 0; i < 4; i++)
-	{
-		_SET_VEHICLE_NEON_LIGHT_ENABLED(newVehicle, i, true);
-	}
-
-	_SET_VEHICLE_XENON_LIGHTS_COLOR(newVehicle, g_Random.GetRandomInt(0, 12));
+	SetVehicleRandomUpgrades(newVehicle);
 
 	return newVehicle;
 }
