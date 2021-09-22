@@ -9,7 +9,18 @@ static void OnStart()
 	Ped player = PLAYER_PED_ID();
 	Hash rampHash = GET_HASH_KEY("prop_mp_ramp_03");
 	Vector3 playerPos = GET_ENTITY_COORDS(player, false);
-	Vector3 rampPos = GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(player, 0, 5, 0);
+
+	float additionalOffset = 0.f;
+	if (IS_PED_IN_ANY_VEHICLE(player, false))
+	{
+		Vector3 min, max;
+		GET_MODEL_DIMENSIONS(GET_ENTITY_MODEL(GET_VEHICLE_PED_IS_IN(player, false)), &min, &max);
+		float vehicleLength = max.y - min.y;
+
+		additionalOffset = max(0.f, (vehicleLength / 2.f) - 5.f);
+	}
+
+	Vector3 rampPos = GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS(player, 0, 5 + additionalOffset, 0);
 
 	Vector3 min;
 	Vector3 max;
