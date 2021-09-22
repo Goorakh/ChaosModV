@@ -44,6 +44,7 @@ static void OnTick()
 			if (veh && DOES_ENTITY_EXIST(veh) && GET_ENTITY_HEALTH(veh) > 0)
 			{
 				ReplaceVehicle(veh);
+				WAIT(10);
 			}
 		}
 	}
