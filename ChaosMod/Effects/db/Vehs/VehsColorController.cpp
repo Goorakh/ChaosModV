@@ -11,6 +11,7 @@ static void OnTickRed()
 		SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh, 255, 0, 0);
 		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(veh);
 	}
 }
 
@@ -34,6 +35,7 @@ static void OnTickBlue()
 		SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh, 0, 0, 255);
 		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(veh);
 	}
 }
 
@@ -57,6 +59,7 @@ static void OnTickGreen()
 		SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh, 0, 255, 0);
 		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(veh);
 	}
 }
 
@@ -83,6 +86,7 @@ static void OnTickChrome()
 		SET_VEHICLE_COLOURS(veh, 120, 120);
 		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(veh);
 	}
 }
 
@@ -147,6 +151,7 @@ static void OnTickPink()
 		SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh, 255, 0, 255);
 		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(veh);
 	}
 }
 
@@ -206,6 +211,7 @@ static void OnTickRainbow()
 
 		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(veh);
 	}
 
 	// Headlight color switcher

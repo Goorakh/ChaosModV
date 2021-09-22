@@ -24,6 +24,7 @@ static void OnTick()
 		SET_VEHICLE_EXTRA_COLOURS(cE, 160, 158);
 		SET_VEHICLE_ENVEFF_SCALE(cE, 0.f);
 		SET_VEHICLE_DIRT_LEVEL(cE, 0.f);
+		REMOVE_DECALS_FROM_VEHICLE(cE);
 	}
 
 	for (Vehicle veh : GetAllVehs())
@@ -41,6 +42,7 @@ static void OnTick()
 			SET_VEHICLE_EXTRA_COLOURS(veh, 160, 158);
 			SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 			SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+			REMOVE_DECALS_FROM_VEHICLE(veh);
 		}
 	}
 
