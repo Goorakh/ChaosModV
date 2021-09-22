@@ -1,5 +1,6 @@
 #include <stdafx.h>
 
+#include "EnableMPCars.h"
 #include "Memory.h"
 
 static DWORD64 ms_ullBaseAddr;
@@ -25,7 +26,7 @@ namespace Memory
 				LOG("Error while executing " << pRegisteredHook->GetName() << " hook");
 			}
 		}
-	
+
 		MH_EnableHook(MH_ALL_HOOKS);
 
 		if (DoesFileExist("chaosmod\\.skipintro"))
@@ -76,9 +77,16 @@ namespace Memory
 				LOG("Error while executing " << pRegisteredHook->GetName() << " hook");
 			}
 		}
+
+		TryEnableMPCars();
 	}
 
 	Handle FindPattern(const std::string& szPattern)
+	{
+		return FindPattern(szPattern, ms_ullBaseAddr, ms_ullEndAddr - ms_ullBaseAddr);
+	}
+
+	Handle FindPattern(const std::string& szPattern, DWORD64 startAddr, DWORD64 size)
 	{
 		std::vector<short> rgBytes;
 
@@ -111,7 +119,8 @@ namespace Memory
 		}
 
 		int niCount = 0;
-		for (DWORD64 ullAddr = ms_ullBaseAddr; ullAddr < ms_ullEndAddr; ullAddr++)
+		DWORD64 endAddr = startAddr + size;
+		for (DWORD64 ullAddr = startAddr; ullAddr < endAddr; ullAddr++)
 		{
 			if (rgBytes[niCount] == -1 || *reinterpret_cast<BYTE*>(ullAddr) == rgBytes[niCount])
 			{

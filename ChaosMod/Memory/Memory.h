@@ -14,6 +14,8 @@ namespace Memory
 	void RunLateHooks();
 
 	_NODISCARD Handle FindPattern(const std::string& szPattern);
+	_NODISCARD Handle FindPattern(const std::string& szPattern, DWORD64 startAddr, DWORD64 size);
+
 	MH_STATUS AddHook(void* pTarget, void* pTetour, void* ppOrig);
 
 	template <typename T>
