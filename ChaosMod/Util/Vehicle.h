@@ -247,7 +247,8 @@ inline void SetVehicleRandomUpgrades(Vehicle veh)
 	SET_VEHICLE_EXTRA_COLOURS(veh, vehicleColorIndices[g_Random.GetRandomInt(0, sizeof(vehicleColorIndices) / sizeof(*vehicleColorIndices) - 1)],
 								   vehicleColorIndices[g_Random.GetRandomInt(0, sizeof(vehicleColorIndices) / sizeof(*vehicleColorIndices) - 1)]);
 
-	for (int i = 0; i < 15; i++)
+
+	for (int i = 0; i < 25; i++)
 	{
 		if (DOES_EXTRA_EXIST(veh, i))
 		{
@@ -333,8 +334,6 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 
 	if (oldHandle)
 	{
-		COPY_VEHICLE_DAMAGES(oldHandle, newVehicle);
-
 		bool shouldUseHook = IS_ENTITY_A_MISSION_ENTITY(oldHandle);
 		Entity copy = oldHandle;
 		SET_ENTITY_AS_MISSION_ENTITY(copy, true, true);
