@@ -13,14 +13,16 @@ static void OnTick()
 {
 	for (auto veh : GetAllVehs())
 	{
+		static int counter = 0;
 		static bool toggle = true;
 
 		SET_VEHICLE_REDUCE_GRIP(veh, toggle);
-		SET_VEHICLE_FRICTION_OVERRIDE(veh, 0.f);
+		SET_VEHICLE_FRICTION_OVERRIDE(veh, 0.4f / g_MetaInfo.m_fChaosMultiplier);
 
-		if (g_MetaInfo.m_fChaosMultiplier <= 1)
+		if (++counter >= g_MetaInfo.m_fChaosMultiplier)
 		{
-			toggle = !toggle;
+			toggle = false;
+			counter = 0;
 		}
 		else
 		{
