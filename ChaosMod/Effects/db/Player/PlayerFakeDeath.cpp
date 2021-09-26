@@ -217,13 +217,14 @@ static void OnStart()
 			STOP_GAMEPLAY_CAM_SHAKING(true);
 			REMOVE_ANIM_DICT("mp_suicide");
 			SET_PLAYER_INVINCIBLE(playerPed, false);
-			Hooks::DisableScriptThreadBlock();
 
 			if (IS_PED_IN_ANY_VEHICLE(playerPed, false))
 			{
 				Vehicle veh = GET_VEHICLE_PED_IS_IN(playerPed, false);
 				SET_VEHICLE_FIXED(veh);
 			}
+
+			Hooks::DisableScriptThreadBlock();
 
 			scaleForm = 0;
 			break;
