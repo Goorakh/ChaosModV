@@ -19,7 +19,7 @@ static void OnTick()
 		SET_VEHICLE_REDUCE_GRIP(veh, toggle);
 		SET_VEHICLE_FRICTION_OVERRIDE(veh, 0.4f / g_MetaInfo.m_fChaosMultiplier);
 
-		if (++counter >= g_MetaInfo.m_fChaosMultiplier)
+		if (++counter > g_MetaInfo.m_fChaosMultiplier)
 		{
 			toggle = false;
 			counter = 0;
