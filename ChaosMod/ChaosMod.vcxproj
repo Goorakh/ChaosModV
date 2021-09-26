@@ -133,7 +133,6 @@
     <ClCompile Include="Effects\db\Peds\PedsNailguns.cpp" />
     <ClCompile Include="Effects\db\Peds\PedsPropHunt.cpp" />
     <ClCompile Include="Effects\db\Peds\PedsQuarrelingCouple.cpp" />
-    <ClCompile Include="Effects\db\Peds\PedsSpawnAngrySimeon.cpp" />
     <ClCompile Include="Effects\db\Peds\PedsSpawnBallaSquad.cpp" />
     <ClCompile Include="Effects\db\Peds\PedsMinions.cpp" />
     <ClCompile Include="Effects\db\Peds\PedsSpawnAngryJimmy.cpp" />
