@@ -47,7 +47,8 @@ const char* ROULETTE_WORDS[] =
     "HUGO_ONE",
     "GATMUN!!",
     "MOXI____",
-    "HUNTER2_"
+    "HUNTER2_",
+    "~GORAKH~"
 };
 
 const char* WIN_PHRASES[] =
@@ -174,6 +175,8 @@ static void OnStart()
         bool breakOut = false;
         while (!breakOut)
         {
+            DISABLE_CONTROL_ACTION(0, ControlSkipCutscene, true);
+
             WAIT(0);
 
             GRAPHICS::DRAW_SCALEFORM_MOVIE_FULLSCREEN(scaleform, 255, 255, 255, 255, 0);
@@ -286,6 +289,7 @@ static void OnStart()
         if (IS_ENTITY_DEAD(PLAYER_PED_ID(), 0))
             break;
     }
+    DISABLE_CONTROL_ACTION(0, ControlSkipCutscene, false);
 }
 
 static RegisterEffect registerEffect(EFFECT_PLAYER_HACKING, OnStart, EffectInfo
