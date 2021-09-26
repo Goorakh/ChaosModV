@@ -1,22 +1,6 @@
 #include <stdafx.h>
 //effect by ProfessorBiddle, this is a bit clunky but it works well.
 
-static Vehicle ReplaceVehicle(Vehicle veh)
-{
-	Vehicle newVeh = ReplaceVehicle(veh, true);
-
-	// Way to know if vehicle is modified
-	SET_VEHICLE_WINDOW_TINT(newVeh, 3);
-
-	Ped driver = GET_PED_IN_VEHICLE_SEAT(newVeh, -1, 0);
-	if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver))
-	{
-		TASK_VEHICLE_DRIVE_WANDER(driver, newVeh, 40, 786603);
-	}
-
-	return newVeh;
-}
-
 static void OnTick()
 {
 	std::vector<Vehicle> replacedVehicles;
@@ -28,7 +12,19 @@ static void OnTick()
 			// Detect if vehicle already randomized
 			if (GET_VEHICLE_WINDOW_TINT(veh) != 3)
 			{
-				replacedVehicles.push_back(ReplaceVehicle(veh));
+				bool wasMissionEntity = IS_ENTITY_A_MISSION_ENTITY(veh);
+				Vehicle newVeh = ReplaceVehicle(veh, true);
+
+				// Way to know if vehicle is modified
+				SET_VEHICLE_WINDOW_TINT(newVeh, 3);
+
+				Ped driver = GET_PED_IN_VEHICLE_SEAT(newVeh, -1, 0);
+				if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver) && !wasMissionEntity)
+				{
+					TASK_VEHICLE_DRIVE_WANDER(driver, newVeh, 40, 786603);
+				}
+
+				replacedVehicles.push_back(newVeh);
 
 				WAIT(10);
 			}
@@ -43,7 +39,18 @@ static void OnTick()
 		{
 			if (veh && DOES_ENTITY_EXIST(veh) && GET_ENTITY_HEALTH(veh) > 0)
 			{
-				ReplaceVehicle(veh);
+				bool wasMissionEntity = IS_ENTITY_A_MISSION_ENTITY(veh);
+				Vehicle newVeh = ReplaceVehicle(veh, true);
+
+				// Way to know if vehicle is modified
+				SET_VEHICLE_WINDOW_TINT(newVeh, 3);
+
+				Ped driver = GET_PED_IN_VEHICLE_SEAT(newVeh, -1, 0);
+				if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver) && !wasMissionEntity)
+				{
+					TASK_VEHICLE_DRIVE_WANDER(driver, newVeh, 40, 786603);
+				}
+
 				WAIT(10);
 			}
 		}
