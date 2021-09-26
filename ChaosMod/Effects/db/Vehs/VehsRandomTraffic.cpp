@@ -12,14 +12,13 @@ static void OnTick()
 			// Detect if vehicle already randomized
 			if (GET_VEHICLE_WINDOW_TINT(veh) != 3)
 			{
-				bool wasMissionEntity = IS_ENTITY_A_MISSION_ENTITY(veh);
 				Vehicle newVeh = ReplaceVehicle(veh, true);
 
 				// Way to know if vehicle is modified
 				SET_VEHICLE_WINDOW_TINT(newVeh, 3);
 
 				Ped driver = GET_PED_IN_VEHICLE_SEAT(newVeh, -1, 0);
-				if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver) && !wasMissionEntity)
+				if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver))
 				{
 					TASK_VEHICLE_DRIVE_WANDER(driver, newVeh, 40, 786603);
 				}
@@ -39,14 +38,13 @@ static void OnTick()
 		{
 			if (veh && DOES_ENTITY_EXIST(veh) && GET_ENTITY_HEALTH(veh) > 0)
 			{
-				bool wasMissionEntity = IS_ENTITY_A_MISSION_ENTITY(veh);
 				Vehicle newVeh = ReplaceVehicle(veh, true);
 
 				// Way to know if vehicle is modified
 				SET_VEHICLE_WINDOW_TINT(newVeh, 3);
 
 				Ped driver = GET_PED_IN_VEHICLE_SEAT(newVeh, -1, 0);
-				if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver) && !wasMissionEntity)
+				if (driver && DOES_ENTITY_EXIST(driver) && !IS_PED_A_PLAYER(driver))
 				{
 					TASK_VEHICLE_DRIVE_WANDER(driver, newVeh, 40, 786603);
 				}
