@@ -37,6 +37,8 @@ static void OnTick()
                 SET_PED_CAN_RAGDOLL(ped, false);
                 SET_ENTITY_COLLISION(ped, false, true);
                 SET_PED_CAN_BE_TARGETTED_BY_PLAYER(ped, player, false);
+                SET_PED_SEEING_RANGE(ped, 0.f);
+                SET_PED_HEARING_RANGE(ped, 0.f);
                 OrbitPed orbPed = { ped, 0 /*angle will be set after, since all ped angles need to be updated anyway*/};
                 orbitingPeds.push_back(orbPed);
                 if (--count == 0)
