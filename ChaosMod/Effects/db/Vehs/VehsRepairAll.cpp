@@ -7,7 +7,8 @@ static void OnStart()
 	for (Vehicle veh : GetAllVehs())
 	{
 		SET_VEHICLE_FIXED(veh);
-		SET_VEHICLE_DIRT_LEVEL(veh, .0f);
+		SET_VEHICLE_DIRT_LEVEL(veh, 0.f);
+		SET_VEHICLE_ENVEFF_SCALE(veh, 0.f);
 		SET_VEHICLE_ENGINE_HEALTH(veh, 1000.f);
 		SET_VEHICLE_PETROL_TANK_HEALTH(veh, 1000.f);
 		SET_VEHICLE_BODY_HEALTH(veh, 1000.f);
