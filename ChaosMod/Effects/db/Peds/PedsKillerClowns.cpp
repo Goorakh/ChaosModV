@@ -43,6 +43,8 @@ static Vector3 getRandomOffsetCoord(Vector3 startCoord, int minOffset, int maxOf
 
 static void OnStop()
 {
+	ENABLE_CLOWN_BLOOD_VFX(false);
+
 	REMOVE_NAMED_PTFX_ASSET("scr_rcbarry2");
 
 	for (Ped ped : clownEnemies)
@@ -64,6 +66,8 @@ static void OnStart()
 
 static void OnTick()
 {
+	ENABLE_CLOWN_BLOOD_VFX(true);
+
 	REQUEST_NAMED_PTFX_ASSET("scr_rcbarry2");
 	while (!HAS_NAMED_PTFX_ASSET_LOADED("scr_rcbarry2"))
 	{
