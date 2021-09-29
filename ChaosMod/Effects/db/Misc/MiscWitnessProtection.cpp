@@ -6,8 +6,20 @@ Effect by Last0xygen
 
 struct OrbitPed
 {
+    OrbitPed(Ped _ped)
+    {
+        ped = _ped;
+
+        Vector3 min, max;
+        GET_MODEL_DIMENSIONS(GET_ENTITY_MODEL(ped), &min, &max);
+        height = max.z - min.z;
+
+        angle = 0.f;
+    }
+
     Ped ped;
     float angle;
+    float height;
 };
 static std::vector<OrbitPed> orbitingPeds;
 static int pedCount = 20;
@@ -39,7 +51,8 @@ static void OnTick()
                 SET_PED_CAN_BE_TARGETTED_BY_PLAYER(ped, player, false);
                 SET_PED_SEEING_RANGE(ped, 0.f);
                 SET_PED_HEARING_RANGE(ped, 0.f);
-                OrbitPed orbPed = { ped, 0 /*angle will be set after, since all ped angles need to be updated anyway*/};
+
+                OrbitPed orbPed = OrbitPed(ped);
                 orbitingPeds.push_back(orbPed);
                 if (--count == 0)
                 {
@@ -54,9 +67,12 @@ static void OnTick()
             {
                 OrbitPed orbitPed = orbitingPeds.back();
 
-                SET_ENTITY_ALPHA(orbitPed.ped, 0, true);
-                SET_PED_AS_NO_LONGER_NEEDED(&orbitPed.ped);
-                DELETE_PED(&orbitPed.ped);
+                if (DOES_ENTITY_EXIST(orbitPed.ped))
+                {
+                    SET_ENTITY_ALPHA(orbitPed.ped, 0, true);
+                    SET_PED_AS_NO_LONGER_NEEDED(&orbitPed.ped);
+                    DELETE_PED(&orbitPed.ped);
+                }
 
                 orbitingPeds.pop_back();
 
@@ -75,42 +91,47 @@ static void OnTick()
             orbitingPeds[i].angle = offset;
         }
     }
+
     Entity entityToCircle = player;
+    float radius = 3.f;
     if (IS_PED_IN_ANY_VEHICLE(player, false))
     {
         entityToCircle = GET_VEHICLE_PED_IS_IN(player, false);
+
+        Vector3 min, max;
+        GET_MODEL_DIMENSIONS(GET_ENTITY_MODEL(entityToCircle), &min, &max);
+        Vector3 vehModelSize = max - min;
+        vehModelSize.z = 0.f;
+
+        radius = max(radius, vehModelSize.Length() + 1.f);
     }
+
     float heading = GET_ENTITY_HEADING(entityToCircle);
-
-    for (std::vector<OrbitPed>::iterator it = orbitingPeds.begin(); it != orbitingPeds.end(); )
+    for (OrbitPed& pedInfo : orbitingPeds)
     {
-        OrbitPed pedInfo = *it;
-        if (IS_PED_DEAD_OR_DYING(pedInfo.ped, false))
+        if (DOES_ENTITY_EXIST(pedInfo.ped))
         {
-            SET_ENTITY_HEALTH(pedInfo.ped, 0, 0);
-            SET_ENTITY_ALPHA(pedInfo.ped, 0, true);
-            SET_PED_AS_NO_LONGER_NEEDED(&pedInfo.ped);
-            DELETE_PED(&pedInfo.ped);
-            it = orbitingPeds.erase(it);
-            if (--count == 0)
+            if (IS_PED_DEAD_OR_DYING(pedInfo.ped, false))
             {
-                WAIT(0);
-                count = 5;
-            }
-        }
-        else
-        {
-            Vector3 min;
-            Vector3 max;
-            GET_MODEL_DIMENSIONS(GET_ENTITY_MODEL(pedInfo.ped), &min, &max);
-            float height = max.z - min.z;
+                SET_ENTITY_HEALTH(pedInfo.ped, 0, 0);
+                SET_ENTITY_ALPHA(pedInfo.ped, 0, true);
+                SET_PED_AS_NO_LONGER_NEEDED(&pedInfo.ped);
+                DELETE_PED(&pedInfo.ped);
 
-            Vector3 coord = GetCoordAround(entityToCircle, heading - pedInfo.angle, 3, -(height / 2.f), true);
-            SET_ENTITY_COORDS(pedInfo.ped, coord.x, coord.y, coord.z , false, false, false, false);
-            SET_ENTITY_HEADING(pedInfo.ped, pedInfo.angle + 90); // Always face away from player
-            TASK_STAND_STILL(pedInfo.ped, 5000);
-            it->angle += 1;
-            it++;
+                if (--count == 0)
+                {
+                    WAIT(0);
+                    count = 5;
+                }
+            }
+            else
+            {
+                Vector3 coord = GetCoordAround(entityToCircle, heading - pedInfo.angle, radius, -(pedInfo.height / 2.f), true);
+                SET_ENTITY_COORDS(pedInfo.ped, coord.x, coord.y, coord.z, false, false, false, false);
+                SET_ENTITY_HEADING(pedInfo.ped, pedInfo.angle + 90); // Always face away from player
+                TASK_STAND_STILL(pedInfo.ped, 5000);
+                pedInfo.angle += 1;
+            }
         }
     }
 }
@@ -118,20 +139,22 @@ static void OnTick()
 static void OnStop()
 {
     int count = 5;
-    for (std::vector<OrbitPed>::iterator it = orbitingPeds.begin(); it != orbitingPeds.end();)
+    for (OrbitPed& pedInfo : orbitingPeds)
     {
-        OrbitPed pedInfo = *it;
-        SET_ENTITY_HEALTH(pedInfo.ped, 0, 0);
-        SET_ENTITY_ALPHA(pedInfo.ped, 0, true);
-        SET_PED_AS_NO_LONGER_NEEDED(&pedInfo.ped);
-        DELETE_PED(&pedInfo.ped);
-        it = orbitingPeds.erase(it);
-        if (--count == 0)
+        if (DOES_ENTITY_EXIST(pedInfo.ped))
         {
-            WAIT(0);
-            count = 5;
+            SET_ENTITY_HEALTH(pedInfo.ped, 0, 0);
+            SET_ENTITY_ALPHA(pedInfo.ped, 0, true);
+            SET_PED_AS_NO_LONGER_NEEDED(&pedInfo.ped);
+            DELETE_PED(&pedInfo.ped);
+            if (--count == 0)
+            {
+                WAIT(0);
+                count = 5;
+            }
         }
     }
+
     orbitingPeds.clear();
 }
 

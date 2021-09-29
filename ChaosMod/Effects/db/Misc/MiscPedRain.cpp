@@ -55,6 +55,8 @@ static void OnTick()
 			SET_ENTITY_HEALTH(ped, 101, 0); // For some reason this is needed for the peds to ragdoll properly?????
 
 			SET_PED_CAN_RAGDOLL(ped, true);
+			SET_PED_TO_RAGDOLL(ped, 100000, 100000, 0, true, true, false);
+			APPLY_FORCE_TO_ENTITY(ped, 1, g_Random.GetRandomFloat(-1.f, 1.f), g_Random.GetRandomFloat(-1.f, 1.f), g_Random.GetRandomFloat(-1.f, 1.f), g_Random.GetRandomFloat(-1.f, 1.f), g_Random.GetRandomFloat(-1.f, 1.f), g_Random.GetRandomFloat(-1.f, 1.f), 0, false, false, true, false, false);
 
 			FallingPed fallingPed = { ped, GET_GAME_TIMER() };
 			fallingPeds.push_back(fallingPed);

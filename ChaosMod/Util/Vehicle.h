@@ -5,94 +5,6 @@
 #include "Memory/Hooks/HandleToEntityStructHook.h"
 #include "Random.h"
 
-inline Vehicle CreateTempVehicle(Hash ulModel, float fPosX, float fPosY, float fPosZ, float fHeading)
-{
-	LoadModel(ulModel);
-
-	Vehicle veh = CREATE_VEHICLE(ulModel, fPosX, fPosY, fPosZ, fHeading, true, false, false);
-	SET_MODEL_AS_NO_LONGER_NEEDED(ulModel);
-
-	Vehicle dummy = veh;
-	SET_VEHICLE_AS_NO_LONGER_NEEDED(&dummy);
-
-	return veh;
-}
-
-inline Vehicle CreateTempVehicleOnPlayerPos(Hash ulModel, float fHeading)
-{
-	LoadModel(ulModel);
-
-	Vector3 playerPos = GET_ENTITY_COORDS(PLAYER_PED_ID(), false);
-
-	Vehicle veh = CREATE_VEHICLE(ulModel, playerPos.x, playerPos.y, playerPos.z, fHeading, true, false, false);
-	SET_MODEL_AS_NO_LONGER_NEEDED(ulModel);
-
-	Vehicle dummy = veh;
-	SET_VEHICLE_AS_NO_LONGER_NEEDED(&dummy);
-
-	return veh;
-}
-
-inline void SetSurroundingPedsInVehicles(Hash vehicleHash, int maxDistance)
-{
-	Ped playerPed = PLAYER_PED_ID();
-	Vector3 playerPos = GET_ENTITY_COORDS(playerPed, true);
-
-	for (Ped ped : GetAllPeds())
-	{
-		if (!IS_PED_A_PLAYER(ped) && !IS_PED_DEAD_OR_DYING(ped, false))
-		{
-			Vector3 pedPos = GET_ENTITY_COORDS(ped, true);
-			//check if player is far away from entity
-			if (maxDistance <= 0 || pedPos.DistanceTo(playerPos) <= maxDistance)
-			{
-				if (IS_PED_IN_ANY_VEHICLE(ped, false))
-				{
-					Vehicle veh = GET_VEHICLE_PED_IS_IN(ped, false);
-
-					if (GET_ENTITY_MODEL(veh) == vehicleHash)
-					{
-						continue;
-					}
-				}
-
-				float pedHeading = GET_ENTITY_HEADING(ped);
-				Vector3 vel = GET_ENTITY_VELOCITY(ped);
-
-				SET_ENTITY_COORDS(ped, pedPos.x, pedPos.y, pedPos.z + 10.f, false, false, false, false);
-
-				SET_PED_COMBAT_ATTRIBUTES(ped, 3, false); // Don't allow them to leave vehicle by themselves
-
-				SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(ped, true);
-
-				Vehicle veh = CreateTempVehicle(vehicleHash, pedPos.x, pedPos.y, pedPos.z, pedHeading);
-
-				SET_PED_INTO_VEHICLE(ped, veh, -1);
-
-				int pedType = GET_PED_TYPE(ped);
-				Hash pedModel = GET_ENTITY_MODEL(ped);
-				for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier - 1; i++)
-				{
-					if (!ARE_ANY_VEHICLE_SEATS_FREE(veh))
-						break;
-
-					Ped clone = CreatePoolPed(pedType, pedModel, 0.f, 0.f, 0.f, 0.f);
-					SET_PED_INTO_VEHICLE(clone, veh, -2);
-					CLONE_PED_TO_TARGET(ped, clone);
-					SET_PED_COMBAT_ATTRIBUTES(clone, 3, false); // Don't allow them to leave vehicle by themselves
-
-					SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(clone, true);
-				}
-
-				SET_VEHICLE_ENGINE_ON(veh, true, true, true);
-				SET_ENTITY_VELOCITY(veh, vel.x, vel.y, vel.z);
-
-				TASK_VEHICLE_MISSION_PED_TARGET(ped, veh, playerPed, 13, 9999.f, 4176732, .0f, .0f, false);
-			}
-		}
-	}
-}
-
 inline void SetVehicleRandomUpgrades(Vehicle veh)
 {
 	SET_VEHICLE_MOD_KIT(veh, 0);
@@ -165,13 +77,105 @@ inline void SetVehicleRandomUpgrades(Vehicle veh)
 	}
 }
 
+inline Vehicle CreateTempVehicle(Hash ulModel, float fPosX, float fPosY, float fPosZ, float fHeading)
+{
+	LoadModel(ulModel);
+
+	Vehicle veh = CREATE_VEHICLE(ulModel, fPosX, fPosY, fPosZ, fHeading, true, false, false);
+	SET_MODEL_AS_NO_LONGER_NEEDED(ulModel);
+
+	Vehicle dummy = veh;
+	SET_VEHICLE_AS_NO_LONGER_NEEDED(&dummy);
+
+	return veh;
+}
+
+inline Vehicle CreateTempVehicleOnPlayerPos(Hash ulModel, float fHeading)
+{
+	LoadModel(ulModel);
+
+	Vector3 playerPos = GET_ENTITY_COORDS(PLAYER_PED_ID(), false);
+
+	Vehicle veh = CREATE_VEHICLE(ulModel, playerPos.x, playerPos.y, playerPos.z, fHeading, true, false, false);
+	SET_MODEL_AS_NO_LONGER_NEEDED(ulModel);
+
+	Vehicle dummy = veh;
+	SET_VEHICLE_AS_NO_LONGER_NEEDED(&dummy);
+
+	return veh;
+}
+
+inline void SetSurroundingPedsInVehicles(Hash vehicleHash, int maxDistance)
+{
+	Ped playerPed = PLAYER_PED_ID();
+	Vector3 playerPos = GET_ENTITY_COORDS(playerPed, true);
+
+	for (Ped ped : GetAllPeds())
+	{
+		if (!IS_PED_A_PLAYER(ped) && !IS_PED_DEAD_OR_DYING(ped, false))
+		{
+			Vector3 pedPos = GET_ENTITY_COORDS(ped, true);
+			//check if player is far away from entity
+			if (maxDistance <= 0 || pedPos.DistanceTo(playerPos) <= maxDistance)
+			{
+				if (IS_PED_IN_ANY_VEHICLE(ped, false))
+				{
+					Vehicle veh = GET_VEHICLE_PED_IS_IN(ped, false);
+
+					if (GET_ENTITY_MODEL(veh) == vehicleHash)
+					{
+						continue;
+					}
+				}
+
+				float pedHeading = GET_ENTITY_HEADING(ped);
+				Vector3 vel = GET_ENTITY_VELOCITY(ped);
+
+				SET_ENTITY_COORDS(ped, pedPos.x, pedPos.y, pedPos.z + 10.f, false, false, false, false);
+
+				SET_PED_COMBAT_ATTRIBUTES(ped, 3, false); // Don't allow them to leave vehicle by themselves
+
+				SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(ped, true);
+
+				Vehicle veh = CreateTempVehicle(vehicleHash, pedPos.x, pedPos.y, pedPos.z, pedHeading);
+
+				SetVehicleRandomUpgrades(veh);
+
+				SET_PED_INTO_VEHICLE(ped, veh, -1);
+
+				int pedType = GET_PED_TYPE(ped);
+				Hash pedModel = GET_ENTITY_MODEL(ped);
+				for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier - 1; i++)
+				{
+					if (!ARE_ANY_VEHICLE_SEATS_FREE(veh))
+						break;
+
+					Ped clone = CreatePoolPed(pedType, pedModel, 0.f, 0.f, 0.f, 0.f);
+					SET_PED_INTO_VEHICLE(clone, veh, -2);
+					CLONE_PED_TO_TARGET(ped, clone);
+					SET_PED_COMBAT_ATTRIBUTES(clone, 3, false); // Don't allow them to leave vehicle by themselves
+
+					SET_BLOCKING_OF_NON_TEMPORARY_EVENTS(clone, true);
+				}
+
+				SET_VEHICLE_ENGINE_ON(veh, true, true, true);
+				SET_ENTITY_VELOCITY(veh, vel.x, vel.y, vel.z);
+
+				TASK_VEHICLE_MISSION_PED_TARGET(ped, veh, playerPed, 13, 9999.f, 4176732, .0f, .0f, false);
+			}
+
+			WAIT(0);
+		}
+	}
+}
+
 struct SeatPed
 {
 	Ped ped;
 	int seatIndex;
 };
 
-inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPed> seatPeds, bool addToPool, Vector3 coords, float heading, bool engineRunning, Vector3 velocity, float forwardSpeed)
+inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPed> seatPeds, bool addToPool, Vector3 coords, Vector3 rotation, bool engineRunning, Vector3 velocity)
 {
 	static const std::vector<Hash>& vehicleModels = Memory::GetAllVehModels();
 	if (vehicleModels.empty())
@@ -199,16 +203,18 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 
 		WAIT(100);
 
-		newVehicle = CreatePoolVehicle(newVehModel, coords.x, coords.y, coords.z, heading);
+		newVehicle = CreatePoolVehicle(newVehModel, coords.x, coords.y, coords.z, 0.f);
 	}
 	else
 	{
 		LoadModel(newVehModel);
-		newVehicle = CREATE_VEHICLE(newVehModel, coords.x, coords.y, coords.z, heading, true, true, true);
+		newVehicle = CREATE_VEHICLE(newVehModel, coords.x, coords.y, coords.z, 0.f, true, true, true);
 		SET_MODEL_AS_NO_LONGER_NEEDED(newVehModel);
 
 		SET_ENTITY_AS_MISSION_ENTITY(newVehicle, false, true);
 	}
+
+	SET_ENTITY_ROTATION(newVehicle, rotation.x, rotation.y, rotation.z, 2, true);
 
 	for (int i = 0; i < seatPeds.size(); i++)
 	{
@@ -228,7 +234,6 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 	}
 
 	SET_ENTITY_VELOCITY(newVehicle, velocity.x, velocity.y, velocity.z);
-	SET_VEHICLE_FORWARD_SPEED(newVehicle, forwardSpeed);
 
 	if (oldHandle)
 	{
@@ -271,13 +276,12 @@ inline Vehicle ReplaceVehicle(Vehicle veh, bool addToPool)
 		}
 	}
 
-	float heading = GET_ENTITY_HEADING(veh);
+	Vector3 rotation = GET_ENTITY_ROTATION(veh, 2);
 	Vector3 vehCoords = GET_ENTITY_COORDS(veh, 0);
 	bool engineRunning = GET_IS_VEHICLE_ENGINE_RUNNING(veh);
 	Vector3 velocity = GET_ENTITY_VELOCITY(veh);
-	float forwardSpeed = GET_ENTITY_SPEED(veh);
 
-	return CreateRandomVehicleWithPeds(veh, vehPeds, addToPool, vehCoords, heading, engineRunning, velocity, forwardSpeed);
+	return CreateRandomVehicleWithPeds(veh, vehPeds, addToPool, vehCoords, rotation, engineRunning, velocity);
 }
 
 inline Vehicle ReplacePlayerVehicle()
@@ -291,10 +295,9 @@ inline Vehicle ReplacePlayerVehicle()
 	{
 		std::vector<SeatPed> peds = { { player, -1 } };
 		Vector3 coords = GET_ENTITY_COORDS(player, 0);
-		float heading = GET_ENTITY_HEADING(player);
+		Vector3 rotation = GET_ENTITY_ROTATION(player, 2);
 		Vector3 velocity = GET_ENTITY_VELOCITY(player);
-		float forwardSpeed = GET_ENTITY_SPEED(player);
 
-		return CreateRandomVehicleWithPeds(0, peds, false, coords, heading, false, velocity, forwardSpeed);
+		return CreateRandomVehicleWithPeds(0, peds, false, coords, rotation, false, velocity);
 	}
 }
