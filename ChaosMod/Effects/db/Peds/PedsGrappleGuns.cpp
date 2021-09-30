@@ -75,21 +75,22 @@ static void OnTick()
 	{
 		if (DOES_ENTITY_EXIST(ped) && !IS_ENTITY_DEAD(ped, 0) && GET_PED_LAST_WEAPON_IMPACT_COORD(ped, &impactCoords))
 		{
-			Entity shotEntity = GetLastEntityShotBy(ped);
-			if (shotEntity && DOES_ENTITY_EXIST(shotEntity))
+			Entity entity = GetLastEntityShotBy(ped);
+			if (entity && DOES_ENTITY_EXIST(entity))
 			{
-				if (IS_ENTITY_A_PED(shotEntity) && !IS_PED_A_PLAYER(shotEntity) && !IS_PED_IN_ANY_VEHICLE(shotEntity, false))
+				if (IS_ENTITY_A_PED(entity) && !IS_PED_A_PLAYER(entity) && !IS_PED_IN_ANY_VEHICLE(entity, false))
 				{
-					SET_PED_TO_RAGDOLL(shotEntity, 500, 500, 0, false, false, false);
+					SET_PED_TO_RAGDOLL(entity, 500, 500, 0, false, false, false);
 				}
 
-				Vector3 entityVelocity = GET_ENTITY_VELOCITY(shotEntity);
+				Vector3 entityVelocity = GET_ENTITY_VELOCITY(entity);
 
-				Vector3 force = (GET_ENTITY_COORDS(ped, true) - impactCoords);
-				force = force / force.Length(); // Normalize vector
-				force = force * 25.f * g_MetaInfo.m_fChaosMultiplier;
+				Vector3 addVelocity = (GET_ENTITY_COORDS(ped, true) - impactCoords);
+				addVelocity = addVelocity / addVelocity.Length(); // Normalize vector
+				addVelocity = addVelocity * 25.f;
 
-				APPLY_FORCE_TO_ENTITY(shotEntity, 1, force.x, force.y, force.z, impactCoords.x, impactCoords.y, impactCoords.z, 0, false, false, true, true, true);
+				Vector3 newVelocity = entityVelocity + addVelocity;
+				SET_ENTITY_VELOCITY(entity, newVelocity.x, newVelocity.y, newVelocity.z);
 			}
 		}
 	}
