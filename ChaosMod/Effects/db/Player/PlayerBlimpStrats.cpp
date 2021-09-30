@@ -4,8 +4,9 @@
 
 #include <stdafx.h>
 #include "Memory/Hooks/ScriptThreadRunHook.h"
+#include "PlayerBlimpStrats.h"
 
-static void OnStart()
+void BlimpStrats_Start(bool isFake)
 {
 	bool cutscenePlaying = IS_CUTSCENE_PLAYING();
 
@@ -18,14 +19,22 @@ static void OnStart()
 		REQUEST_CUTSCENE("fbi_1_int", 8);
 	}
 	
-	Hooks::EnableScriptThreadBlock();
+	if (!isFake)
+	{
+		Hooks::EnableScriptThreadBlock();
+	}
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
 		Vehicle veh = CREATE_VEHICLE(blimpHash, -370.490, 1029.085, 345.090, 53.824, true, false, false);
 		SET_VEHICLE_ENGINE_ON(veh, true, true, false);
 		Ped player = PLAYER_PED_ID();
-		SET_ENTITY_INVINCIBLE(player, true);
+
+		if (!isFake)
+		{
+			SET_ENTITY_INVINCIBLE(player, true);
+		}
+
 		SET_PED_INTO_VEHICLE(player, veh, -1);
 		SET_VEHICLE_FORWARD_SPEED(veh, 45);
 		TASK_LEAVE_VEHICLE(player, veh, 4160);
@@ -38,7 +47,10 @@ static void OnStart()
 			waited++;
 		}
 
-		SET_ENTITY_INVINCIBLE(player, false);
+		if (!isFake)
+		{
+			SET_ENTITY_INVINCIBLE(player, false);
+		}
 
 		if (!cutscenePlaying)
 		{
@@ -65,7 +77,16 @@ static void OnStart()
 		}
 	}
 
-	Hooks::DisableScriptThreadBlock();
+
+	if (!isFake)
+	{
+		Hooks::DisableScriptThreadBlock();
+	}
+}
+
+static void OnStart()
+{
+	BlimpStrats_Start(false);
 }
 
 static RegisterEffect registerEffect(EFFECT_PLAYER_BLIMP_STRATS, OnStart, nullptr, nullptr, EffectInfo

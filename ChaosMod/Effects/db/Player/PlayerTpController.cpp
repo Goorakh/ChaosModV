@@ -1,6 +1,7 @@
 #include <stdafx.h>
 
 #include "Memory/Hooks/ScriptThreadRunHook.h"
+#include "Effects/db/Player/PlayerBlimpStrats.h"
 
 static void OnStartLSIA()
 {
@@ -334,6 +335,10 @@ static RegisterEffect registerEffectMission(EFFECT_TP_MISSION, OnStartMission, E
 	}
 );
 
+/*
+	Effect by MoneyWasted
+*/
+
 static std::vector<Vector3> allPossibleStores =
 {
 	// Convenience Stores
@@ -498,7 +503,8 @@ static const std::vector<EEffectType> fakeTpTypes =
 	EFFECT_TP_RANDOM,
 	EFFECT_TP_TO_STORE,
 	EFFECT_TP_WAYPOINT,
-	EFFECT_MAKE_STUNT
+	EFFECT_MAKE_STUNT,
+	EFFECT_PLAYER_BLIMP_STRATS
 };
 
 static bool IsValidFakeTpType(EEffectType type)
@@ -519,8 +525,8 @@ static bool IsValidFakeTpType(EEffectType type)
 
 static void OnStartFakeTp()
 {
-	EEffectType fakeTpType = EFFECT_INVALID;
-	
+	EEffectType fakeTpType;
+
 	do
 	{
 		fakeTpType = fakeTpTypes.at(g_Random.GetRandomInt(0, fakeTpTypes.size() - 1));
@@ -531,7 +537,7 @@ static void OnStartFakeTp()
 	Player player = PLAYER_ID();
 	Ped playerPed = PLAYER_PED_ID();
 	Vehicle playerVeh = IS_PED_IN_ANY_VEHICLE(playerPed, false) ? GET_VEHICLE_PED_IS_IN(playerPed, false) : 0;
-	
+
 	Vector3 playerPos = GET_ENTITY_COORDS(playerPed, false);
 
 	Hooks::EnableScriptThreadBlock();
@@ -580,6 +586,9 @@ static void OnStartFakeTp()
 			break;
 		case EFFECT_MAKE_STUNT:
 			OnStartStunt();
+			break;
+		case EFFECT_PLAYER_BLIMP_STRATS:
+			BlimpStrats_Start(true);
 			break;
 	}
 
