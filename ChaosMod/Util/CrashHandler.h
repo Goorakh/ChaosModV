@@ -1,6 +1,7 @@
 #pragma once
 
 #include "File.h"
+#include "Util/AudioVolumeController.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
@@ -42,6 +43,9 @@ inline LONG WINAPI CrashHandler(_EXCEPTION_POINTERS* exceptionInfo)
 	dumpFunc(GetCurrentProcess(), GetCurrentProcessId(), file, static_cast<MINIDUMP_TYPE>(flags), &exInfo, NULL, NULL);
 
 	CloseHandle(file);
+	
+	// If the game is exited while a volume override is active, the override will persist to the next time the game is started
+	AudioVolumeController::ResetOverrideVolume();
 
 	return EXCEPTION_CONTINUE_SEARCH;
 }

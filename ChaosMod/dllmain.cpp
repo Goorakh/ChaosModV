@@ -1,4 +1,5 @@
 #include <stdafx.h>
+#include "Util/AudioVolumeController.h"
 
 BOOL APIENTRY DllMain(HMODULE hInstance, DWORD reason, LPVOID lpReserved)
 {
@@ -32,6 +33,9 @@ BOOL APIENTRY DllMain(HMODULE hInstance, DWORD reason, LPVOID lpReserved)
 
 			FreeConsole();
 		}
+
+		// If the game is exited while a volume override is active, the override will persist to the next time the game is started
+		AudioVolumeController::ResetOverrideVolume();
 
 		break;
 	}
