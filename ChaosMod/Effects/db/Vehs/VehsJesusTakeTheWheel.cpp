@@ -13,6 +13,9 @@ static void OnStart()
 	if (!IS_PED_IN_ANY_VEHICLE(playerPed, false))
 	{
 		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("PANTO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
+		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh);
+		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh);
 		SET_VEHICLE_COLOURS(veh, 135, 135);
 		SET_PED_INTO_VEHICLE(playerPed, veh, -1);
 	}
@@ -71,6 +74,9 @@ static void OnStart()
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier - 1; i++)
 	{
 		Vehicle additionalVeh = CreatePoolVehicle(GET_HASH_KEY("PANTO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
+		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(additionalVeh);
+		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(additionalVeh);
 		SET_VEHICLE_COLOURS(additionalVeh, 135, 135);
 
 		LoadModel(modelHash);

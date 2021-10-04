@@ -25,6 +25,7 @@ static void OnStart()
         float y_pos = cos((360 - heading) * PI / 180) * (10 * (i + 1));
 
         Vehicle veh = CreatePoolVehicle(vehHash, playerPos.x - x_pos, playerPos.y - y_pos, playerPos.z, heading);
+        SetVehicleRandomUpgrades(veh);
         SET_VEHICLE_ENGINE_ON(veh, true, true, false);
 
         Vector3 vel = GET_ENTITY_VELOCITY(playerPed);

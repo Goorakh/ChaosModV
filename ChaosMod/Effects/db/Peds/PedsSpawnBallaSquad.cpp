@@ -22,6 +22,9 @@ static void OnStart()
 	{
 		// Offset z for every new instance spawned, to avoid them spawning inside one another
 		Vehicle veh = CreatePoolVehicle(carModel, playerPos.x, playerPos.y, playerPos.z + i, heading);
+		SetVehicleRandomUpgrades(veh);
+		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh);
+		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh);
 		SET_VEHICLE_COLOURS(veh, 148, 148);
 		SET_VEHICLE_ENGINE_ON(veh, true, true, false);
 

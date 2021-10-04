@@ -471,6 +471,7 @@ static void OnStartStunt()
 		Vector3 playerPos = GET_ENTITY_COORDS(playerPed, false);
 
 		veh = CreatePoolVehicle(GET_HASH_KEY("BATI"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 
 		SET_PED_INTO_VEHICLE(playerPed, veh, -1);
 	}

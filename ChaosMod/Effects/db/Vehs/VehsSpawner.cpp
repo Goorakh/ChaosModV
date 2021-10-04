@@ -13,7 +13,8 @@ static void OnStartRhino()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("RHINO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("RHINO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -30,7 +31,8 @@ static void OnStartAdder()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("ADDER"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("ADDER"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -47,7 +49,8 @@ static void OnStartDump()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("DUMP"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("DUMP"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -64,7 +67,8 @@ static void OnStartMonster()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("MONSTER"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("MONSTER"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -81,7 +85,8 @@ static void OnStartBMX()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("BMX"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("BMX"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -98,7 +103,8 @@ static void OnStartTug()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("TUG"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("TUG"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -115,7 +121,8 @@ static void OnStartCargoplane()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("CARGOPLANE"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("CARGOPLANE"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -132,7 +139,8 @@ static void OnStartBus()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("BUS"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("BUS"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -149,7 +157,8 @@ static void OnStartBlimp()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("BLIMP"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("BLIMP"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -166,7 +175,8 @@ static void OnStartBuzzard()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("BUZZARD"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("BUZZARD"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -183,7 +193,8 @@ static void OnStartFaggio()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("FAGGIO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("FAGGIO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -200,7 +211,8 @@ static void OnStartRuiner3()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("RUINER3"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("RUINER3"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -240,7 +252,8 @@ static void OnStartBaletrailer()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("BALETRAILER"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("BALETRAILER"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 
@@ -257,7 +270,8 @@ static void OnStartRomero()
 
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
 	{
-		CreatePoolVehicle(GET_HASH_KEY("ROMERO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		Vehicle veh = CreatePoolVehicle(GET_HASH_KEY("ROMERO"), playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(PLAYER_PED_ID()));
+		SetVehicleRandomUpgrades(veh);
 	}
 }
 

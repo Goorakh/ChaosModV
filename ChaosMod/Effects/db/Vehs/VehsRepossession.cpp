@@ -27,6 +27,9 @@ static void OnStart()
 	else
 	{
 		vehicle = CreatePoolVehicle(carModel, playerPos.x, playerPos.y, playerPos.z, heading);
+		SetVehicleRandomUpgrades(vehicle);
+		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(vehicle);
+		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(vehicle);
 		SET_VEHICLE_COLOURS(vehicle, 88, 0);
 		SET_VEHICLE_ENGINE_ON(vehicle, true, true, false);
 	}
@@ -51,6 +54,9 @@ static void OnStart()
 	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier - 1; i++)
 	{
 		Vehicle veh = CreatePoolVehicle(carModel, playerPos.x, playerPos.y, playerPos.z + ((i + 1) * 2), heading);
+		SetVehicleRandomUpgrades(veh);
+		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh);
+		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh);
 		SET_VEHICLE_COLOURS(veh, 88, 0);
 		SET_VEHICLE_ENGINE_ON(veh, true, true, false);
 
