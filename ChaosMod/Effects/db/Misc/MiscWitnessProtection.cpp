@@ -103,7 +103,7 @@ static void OnTick()
         Vector3 vehModelSize = max - min;
         vehModelSize.z = 0.f;
 
-        radius = max(radius, vehModelSize.Length() + 1.f);
+        radius = max(radius, vehModelSize.Length() + 0.3f);
     }
 
     float heading = GET_ENTITY_HEADING(entityToCircle);
