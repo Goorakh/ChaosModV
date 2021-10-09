@@ -37,6 +37,6 @@ static RegisterEffect registerEffect(EFFECT_GAMESPEED_SUPERHOT, nullptr, OnStop,
 		.Name = "Superhot",
 		.Id = "time_superhot",
 		.IsTimed = true,
-		.IncompatibleWith = { EFFECT_GAMESPEED_X02, EFFECT_GAMESPEED_X05, EFFECT_PLAYER_DEAD_EYE }
+		.IncompatibleWith = { EFFECT_PLAYER_DEAD_EYE, EFFECT_GAMESPEED_X02, EFFECT_GAMESPEED_X05 }
 	}
 );
