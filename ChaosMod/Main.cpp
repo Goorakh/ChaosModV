@@ -136,7 +136,7 @@ static void Init()
 
 	LOG("Completed Init!");
 
-	if (ms_pTwitchVoting->IsEnabled())
+	if (Main::IsTwitchVotingEnabled())
 	{
 		ms_pSplashTexts->ShowTwitchVotingSplash();
 	}
@@ -316,5 +316,10 @@ namespace Main
 		{
 			ms_pDebugMenu->HandleInput(ulKey, bWasDownBefore);
 		}
+	}
+
+	bool IsTwitchVotingEnabled()
+	{
+		return ms_pTwitchVoting && ms_pTwitchVoting->IsEnabled();
 	}
 }
