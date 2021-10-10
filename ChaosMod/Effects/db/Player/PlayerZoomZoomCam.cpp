@@ -5,7 +5,11 @@
 #include <stdafx.h>
 static Camera zoomCamera = 0;
 static float camZoom = 80.f;
-static float camZoomRate = 0.6f;
+#define camZoomRate 0.15f * g_MetaInfo.m_fChaosMultiplier
+#define minZoom 10.f / g_MetaInfo.m_fChaosMultiplier
+#define maxZoom 120.f + (10.f * (1.f - (1.f / g_MetaInfo.m_fChaosMultiplier)))
+#define zoomMidpoint (maxZoom - minZoom) / 2 + minZoom
+#define zoomMultiplier maxZoom - zoomMidpoint
 
 static void UpdateCamera()
 {
@@ -18,29 +22,14 @@ static void OnStart()
 {
     zoomCamera = CREATE_CAM("DEFAULT_SCRIPTED_CAMERA", 1);
     RENDER_SCRIPT_CAMS(true, true, 10, 1, 1, 1);
-    camZoom = 80.f;
 }
 
 static void OnTick()
 {
-    static DWORD64 lastTick = 0;
     DWORD64 curTick = GET_GAME_TIMER();
 
-    if (curTick > lastTick + 5)
-    {
-        lastTick = curTick;
-
-        if (camZoom < (11 / g_MetaInfo.m_fChaosMultiplier) || camZoom > (179 - (60 / g_MetaInfo.m_fChaosMultiplier)))
-        {
-            // Clamp zoom between min and max value
-            camZoom = max(camZoom, 11 / g_MetaInfo.m_fChaosMultiplier);
-            camZoom = min(camZoom, 179 - (60 / g_MetaInfo.m_fChaosMultiplier));
-
-            camZoomRate = camZoomRate*-1;
-        }
-        camZoom += camZoomRate * g_MetaInfo.m_fChaosMultiplier;
-    }
-
+    camZoom = SIN((float)curTick * camZoomRate) * zoomMultiplier + zoomMidpoint;
+    
     SET_CAM_ACTIVE(zoomCamera, true);
     UpdateCamera();
 }
