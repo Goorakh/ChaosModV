@@ -13,12 +13,8 @@ namespace EffectConfig
 
 		for (int i = 0; i < _EFFECT_ENUM_MAX; i++)
 		{
-			LOG((i + 1) << "/" << _EFFECT_ENUM_MAX);
-
 			EEffectType effectType = static_cast<EEffectType>(i);
 			const EffectInfo& effectInfo = g_dictEffectsMap.at(effectType);
-
-			LOG((i + 1) << ": " << (effectInfo.Id != nullptr));
 
 			// Default EffectData values
 			// Enabled, TimedType, CustomTime (-1 = Disabled), Weight, Permanent, ExcludedFromVoting
@@ -116,7 +112,5 @@ namespace EffectConfig
 
 			out.emplace(effectType, effectData);
 		}
-
-		LOG("Finished loading " << szConfigPath);
 	}
 }
