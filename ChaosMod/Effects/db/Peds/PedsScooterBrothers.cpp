@@ -3,7 +3,7 @@
 static void OnStart()
 {
 	static const Hash faggioHash = GET_HASH_KEY("FAGGIO");
-	SetSurroundingPedsInVehicles(faggioHash, -1);
+	SetSurroundingPedsInVehicles(faggioHash, -1, 30.f);
 }
 
 static RegisterEffect registerEffect(EFFECT_PEDS_SCOOTERBROTHERS, OnStart, EffectInfo

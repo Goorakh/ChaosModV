@@ -8,7 +8,7 @@ static float camZoom = 80.f;
 #define camZoomRate 0.15f * g_MetaInfo.m_fChaosMultiplier
 #define minZoom 10.f / g_MetaInfo.m_fChaosMultiplier
 #define maxZoom 120.f + (10.f * (1.f - (1.f / g_MetaInfo.m_fChaosMultiplier)))
-#define zoomMidpoint (maxZoom - minZoom) / 2 + minZoom
+#define zoomMidpoint ((maxZoom - minZoom) / 2) + minZoom
 #define zoomMultiplier maxZoom - zoomMidpoint
 
 static void UpdateCamera()
