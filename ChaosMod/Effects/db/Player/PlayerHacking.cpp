@@ -17,6 +17,7 @@ const char* ROULETTE_WORDS[] =
     "DAVEYYYY",
     "MWEATHER",
     "RED_DEAD",
+    "WORDS[8]",
     "CHAOSMOD",
     "HACKING!",
     "ALXBLADE",
@@ -72,7 +73,8 @@ const char* WIN_PHRASES[] =
     "Vim > Emacs",
     "loooool cool hacker reference xdd",
     "You wouldn't download a car...",
-    "Needs more blockchain"
+    "Needs more blockchain",
+    "WIN_PHRASES[20]"
 };
 
 enum class TimerAction
