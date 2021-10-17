@@ -4,15 +4,15 @@
 
 #include <stdafx.h>
 
-#define SPAWN_HEIGHT 50.f
+#define SPAWN_HEIGHT (50.f * g_MetaInfo.m_fChaosMultiplier)
 
-// s = (a * t^2)/2
-// t = sqrt((s*2)/a)
+// d = (a * t^2)/2
+// t = sqrt((d*2)/a)
 // Estimated fall time, in seconds
-const float estimatedFallTime = sqrt((SPAWN_HEIGHT * 2.f) / 9.8);
+#define estimatedFallTime sqrt((SPAWN_HEIGHT * 2.f) / Memory::GetGravityLevel())
 
 // Estimated fall time, in milliseconds
-const int estimatedFallTime_ms = estimatedFallTime * 1000.f;
+#define estimatedFallTime_ms (estimatedFallTime * 1000.f)
 
 struct FallingPed
 {
