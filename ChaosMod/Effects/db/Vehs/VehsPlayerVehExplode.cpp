@@ -1,6 +1,6 @@
 #include <stdafx.h>
 
-#define DETONATE_TIMER 5000
+#define DETONATE_TIMER (5000 / g_MetaInfo.m_fChaosMultiplier)
 
 static void OnStart()
 {
@@ -17,8 +17,8 @@ static void OnStart()
 
 	int seats = GET_VEHICLE_MODEL_NUMBER_OF_SEATS(GET_ENTITY_MODEL(veh));
 
-	int detonateTimer = DETONATE_TIMER / g_MetaInfo.m_fChaosMultiplier;
-	int beepTimer = DETONATE_TIMER / g_MetaInfo.m_fChaosMultiplier;
+	int detonateTimer = DETONATE_TIMER;
+	int beepTimer = DETONATE_TIMER;
 	while (DOES_ENTITY_EXIST(veh))
 	{
 		WAIT(0);

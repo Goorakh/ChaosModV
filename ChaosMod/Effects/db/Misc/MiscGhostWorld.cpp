@@ -4,26 +4,23 @@
 
 #include <stdafx.h>
 
-static int GetAlphaForEntity(Entity entity)
-{
-	return ((sin((entity * 20) + (GET_GAME_TIMER() / (125 / g_MetaInfo.m_fChaosMultiplier))) + 1) / 2) * 255;
-}
+#define GetAlphaFor(ent) (((sin((ent * 20.f) + (GET_GAME_TIMER() / (125.f / g_MetaInfo.m_fChaosMultiplier))) + 1.f) / 2.f) * 255.f)
 
 static void OnTick()
 {
 	for (Ped ped : GetAllPeds())
 	{
-		SET_ENTITY_ALPHA(ped, GetAlphaForEntity(ped), false);
+		SET_ENTITY_ALPHA(ped, GetAlphaFor(ped), false);
 	}
 
 	for (Vehicle veh : GetAllVehs())
 	{
-		SET_ENTITY_ALPHA(veh, GetAlphaForEntity(veh), false);
+		SET_ENTITY_ALPHA(veh, GetAlphaFor(veh), false);
 	}
 
 	for (Entity prop : GetAllProps())
 	{
-		SET_ENTITY_ALPHA(prop, GetAlphaForEntity(prop), false);
+		SET_ENTITY_ALPHA(prop, GetAlphaFor(prop), false);
 	}
 }
 

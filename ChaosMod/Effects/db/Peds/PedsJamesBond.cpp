@@ -5,7 +5,7 @@
 #include <stdafx.h>
 #include <math.h>  
 
-#define PI 3.14159265
+constexpr double PI = 3.14159265;
 
 static void OnStart()
 {

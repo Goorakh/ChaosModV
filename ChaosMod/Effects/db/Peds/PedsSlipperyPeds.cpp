@@ -8,7 +8,7 @@ static void OnTick()
 {
 	for (Ped pd : GetAllPeds())
 	{
-		if (GET_ENTITY_SPEED(pd) > (5.7 - (0.5 * g_MetaInfo.m_fChaosMultiplier)))
+		if (GET_ENTITY_SPEED(pd) > (5.2f - approach_rt(5.2f, 0.3f)))
 		{
 			SET_PED_TO_RAGDOLL(pd, 3000, 3000, 0, true, true, false);
 		}

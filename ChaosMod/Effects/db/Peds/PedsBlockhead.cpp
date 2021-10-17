@@ -4,8 +4,8 @@
 
 #include <stdafx.h>
 
-#define IK_Head_ID 0x322c
-#define BOX_SIZE 0.4f * g_MetaInfo.m_fChaosMultiplier
+constexpr int IK_Head_ID = 0x322c;
+#define BOX_SIZE (0.4f * g_MetaInfo.m_fChaosMultiplier)
 
 static void OnTick()
 {

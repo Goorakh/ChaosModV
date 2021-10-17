@@ -2,7 +2,7 @@
 
 // Effect by kolyaventuri
 
-static int CHANCE = 100; // Higher is less chance
+#define CHANCE (100.f / g_MetaInfo.m_fChaosMultiplier) // Higher is less chance
 int match = g_Random.GetRandomInt(0, CHANCE); // "Seed" for chance to match against
 int particleId;
 
@@ -28,9 +28,9 @@ static void ApplyVig() {
 
 static void UpdateRand()
 {
-    if (match > CHANCE / g_MetaInfo.m_fChaosMultiplier)
+    if (match > CHANCE)
     {
-        match = g_Random.GetRandomInt(0, CHANCE / g_MetaInfo.m_fChaosMultiplier);
+        match = g_Random.GetRandomInt(0, CHANCE);
     }
 }
 
@@ -40,7 +40,7 @@ static void OnTick() {
     Ped player = PLAYER_PED_ID();
 
     UpdateRand();
-    int rand_int = g_Random.GetRandomInt(0, CHANCE / g_MetaInfo.m_fChaosMultiplier);
+    int rand_int = g_Random.GetRandomInt(0, CHANCE);
     
     PLAY_STREAM_FROM_PED(player);
     if (rand_int == match) {

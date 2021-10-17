@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-#define PI 3.14159265
+constexpr auto PI = 3.14159265;
 
 static void OnStart()
 {

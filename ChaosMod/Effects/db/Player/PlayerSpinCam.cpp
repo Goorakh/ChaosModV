@@ -5,7 +5,8 @@
 #include <stdafx.h>
 static Camera spinningCamera = 0;
 float camRot = 0.f;
-const float camRotRate = 1.2f;
+
+#define camRotRate (1.2f * g_MetaInfo.m_fChaosMultiplier)
 
 static void UpdateCamera()
 {
@@ -23,7 +24,7 @@ static void OnStart()
 
 static void OnTick()
 {
-    camRot += camRotRate * g_MetaInfo.m_fChaosMultiplier;
+    camRot += camRotRate;
     CAM::SET_CAM_ACTIVE(spinningCamera, true);
     UpdateCamera();
 }

@@ -4,8 +4,9 @@
 
 #include <stdafx.h>
 
-static const double SPEED = 0.003;
-static const double BOX_HEIGHT_RATIO = 0.45;
+#define SPEED (0.003 * g_MetaInfo.m_fChaosMultiplier)
+#define BOX_HEIGHT_RATIO (0.45 / g_MetaInfo.m_fChaosMultiplier) // Make box smaller with higher multipliers
+
 static double boxWidth, boxHeight, offsetX, offsetY;
 static bool goingDown = true, goingRight = true;
 
@@ -22,7 +23,7 @@ static void UpdateBoxSize()
 	// Get Screenresolution to calculate the square ratio
 	int screenresx, screenresy;
 	_GET_ACTIVE_SCREEN_RESOLUTION(&screenresx, &screenresy);
-	boxHeight = BOX_HEIGHT_RATIO / g_MetaInfo.m_fChaosMultiplier; // Make box smaller with higher multipliers
+	boxHeight = BOX_HEIGHT_RATIO;
 	boxWidth = boxHeight * (double(screenresy) / double(screenresx));
 }
 
