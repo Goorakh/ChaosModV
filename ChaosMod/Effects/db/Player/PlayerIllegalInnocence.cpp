@@ -7,7 +7,7 @@
 #include <stdafx.h>
 
 #pragma region variable declarations
-#define WAIT_TIME 5000 // ms. before police are angry at your innocence
+#define WAIT_TIME (5000 / g_MetaInfo.m_fChaosMultiplier) // ms. before police are angry at your innocence
 
 static DWORD64 m_timeReserve;
 static DWORD64 m_lastTick = 0;
