@@ -539,6 +539,21 @@ static void OnStartFakeTp()
 	Ped playerPed = PLAYER_PED_ID();
 	Vehicle playerVeh = IS_PED_IN_ANY_VEHICLE(playerPed, false) ? GET_VEHICLE_PED_IS_IN(playerPed, false) : 0;
 
+	// Default to driver, since on the off chance that it can't find the player's seat index, setting the player back into the driver seat will still be correct most of the time
+	int playerSeatIndex = -1;
+	if (playerVeh)
+	{
+		for (int i = -1; i < GET_VEHICLE_MAX_NUMBER_OF_PASSENGERS(playerVeh); i++)
+		{
+			Ped seatPed = GET_PED_IN_VEHICLE_SEAT(playerVeh, i, 0);
+			if (seatPed && DOES_ENTITY_EXIST(seatPed) && seatPed == playerPed)
+			{
+				playerSeatIndex = i;
+				break;
+			}
+		}
+	}
+
 	Vector3 playerPos = GET_ENTITY_COORDS(playerPed, false);
 
 	Hooks::EnableScriptThreadBlock();
@@ -551,21 +566,29 @@ static void OnStartFakeTp()
 	}
 
 	int oldWantedLevel = GET_PLAYER_WANTED_LEVEL(player);
-
+	bool setPlayerBackIntoOldVehicle = false;
 	switch (fakeTpType)
 	{
 		case EFFECT_TP_LSAIRPORT:
 			OnStartLSIA();
-			SET_PLAYER_WANTED_LEVEL(player, 3, false);
-			SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+
+			if (oldWantedLevel < 3)
+			{
+				SET_PLAYER_WANTED_LEVEL(player, 3, false);
+				SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+			}
 			break;
 		case EFFECT_TP_MAZETOWER:
 			OnStartMazeTower();
 			break;
 		case EFFECT_TP_FORTZANCUDO:
 			OnStartFortZancudo();
-			SET_PLAYER_WANTED_LEVEL(player, 4, false);
-			SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+
+			if (oldWantedLevel < 4)
+			{
+				SET_PLAYER_WANTED_LEVEL(player, 4, false);
+				SET_PLAYER_WANTED_LEVEL_NOW(player, 0);
+			}
 			break;
 		case EFFECT_TP_MOUNTCHILLIAD:
 			OnStartMountChilliad();
@@ -590,6 +613,7 @@ static void OnStartFakeTp()
 			break;
 		case EFFECT_PLAYER_BLIMP_STRATS:
 			BlimpStrats_Start(true);
+			setPlayerBackIntoOldVehicle = true;
 			break;
 	}
 
@@ -603,6 +627,11 @@ static void OnStartFakeTp()
 	if (playerVeh)
 	{
 		SET_ENTITY_INVINCIBLE(playerVeh, false);
+
+		if (setPlayerBackIntoOldVehicle)
+		{
+			SET_PED_INTO_VEHICLE(playerPed, playerVeh, playerSeatIndex);
+		}
 	}
 
 	SET_PLAYER_WANTED_LEVEL(player, oldWantedLevel, false);
