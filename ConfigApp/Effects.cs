@@ -355,6 +355,7 @@ namespace ConfigApp
             EFFECT_PLAYER_SICK_CAM,
             EFFECT_MAKE_STUNT,
             EFFECT_PEDS_RANDOMBROTHERS,
+            EFFECT_VEHS_WIGGLE_CHANGES_SIZE,
             _EFFECT_ENUM_MAX
         }
 
@@ -674,6 +675,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PLAYER_SICK_CAM, new EffectInfo("I Feel Sick", EffectCategory.PLAYER, "player_sick_cam", true, true)},
             {EffectType.EFFECT_MAKE_STUNT, new EffectInfo("Make Random Stunt Jump", EffectCategory.PLAYER, "player_tp_stunt")},
             {EffectType.EFFECT_PEDS_RANDOMBROTHERS, new EffectInfo("Random Brothers", EffectCategory.PEDS, "peds_randombrothers")},
+            {EffectType.EFFECT_VEHS_WIGGLE_CHANGES_SIZE, new EffectInfo("Wiggle-Wiggle", EffectCategory.VEHICLE, "veh_wiggle_changes_size", true)},
         };
     }
 }
