@@ -100,7 +100,7 @@ static void OnTick()
 			}
 			if (length - savedLength < 0.1f)
 			{
-				multiplyMatrix(getScriptHandleBaseAddress(vehicle), multiplier);
+				multiplyMatrix(getScriptHandleBaseAddress(vehicle), multiplier * g_MetaInfo.m_fChaosMultiplier);
 			}
 		}
 	}
