@@ -47,13 +47,13 @@ static void OnTickInsane()
 		{
 			SET_PED_TO_RAGDOLL(ped, 1000, 1000, 0, true, true, false);
 
-			APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(ped, 0, 0, 0, -75.f * g_MetaInfo.m_fChaosMultiplier, false, false, true, false);
+			Memory::ApplyForceToEntityCenterOfMass(ped, 0, 0, 0, -75.f * g_MetaInfo.m_fChaosMultiplier, false, false, true, false);
 		}
 	}
 
 	for (auto object : GetAllProps())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(object, 0, 0, 0, -200.f * g_MetaInfo.m_fChaosMultiplier, false, false, true, false);
+		Memory::ApplyForceToEntityCenterOfMass(object, 0, 0, 0, -200.f * g_MetaInfo.m_fChaosMultiplier, false, false, true, false);
 	}
 }
 
@@ -86,12 +86,12 @@ static void OnTickInvert()
 	// If this isn't done, the gravity for props and vehicles won't update
 	for (auto object : GetAllProps())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(object, 0, 0, 0, 0.f, false, false, true, false);
+		Memory::ApplyForceToEntityCenterOfMass(object, 0, 0, 0, 0.f, false, false, true, false);
 	}
 
 	for (auto veh : GetAllVehs())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(veh, 0, 0, 0, 0.f, false, false, true, false);
+		Memory::ApplyForceToEntityCenterOfMass(veh, 0, 0, 0, 0.f, false, false, true, false);
 	}
 }
 
@@ -126,18 +126,18 @@ static void OnTickSideways()
 		{
 			SET_PED_TO_RAGDOLL(ped, 1000, 1000, 0, true, true, false);
 
-			APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(ped, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
+			Memory::ApplyForceToEntityCenterOfMass(ped, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
 		}
 	}
 
 	for (auto object : GetAllProps())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(object, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
+		Memory::ApplyForceToEntityCenterOfMass(object, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
 	}
 
 	for (auto veh : GetAllVehs())
 	{
-		APPLY_FORCE_TO_ENTITY_CENTER_OF_MASS(veh, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
+		Memory::ApplyForceToEntityCenterOfMass(veh, 1, gravityForce.x, gravityForce.y, gravityForce.z, false, false, true, false);
 	}
 }
 

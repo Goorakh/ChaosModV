@@ -50,7 +50,7 @@ static void OnTick()
 			Vector3 forceVector = entityCoord - playerCoord;
 			forceVector = forceVector * g_MetaInfo.m_fChaosMultiplier;
 
-			APPLY_FORCE_TO_ENTITY(entity, 3, forceVector.x, forceVector.y, forceVector.z, 0, 0, 0, false, false, true, true, false, true);
+			Memory::ApplyForceToEntity(entity, 3, forceVector.x, forceVector.y, forceVector.z, 0, 0, 0, false, false, true, true, false, true);
 		}
 	}
 }

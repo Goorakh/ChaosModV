@@ -59,7 +59,7 @@ static void OnTick()
 			forceVector = forceVector * -1.f; // Reverse direction
 			forceVector = forceVector * g_MetaInfo.m_fChaosMultiplier;
 
-			APPLY_FORCE_TO_ENTITY(entity, 3, forceVector.x, forceVector.y, forceVector.z, 0, 0, 0, false, false, true, true, false, true);
+			Memory::ApplyForceToEntity(entity, 3, forceVector.x, forceVector.y, forceVector.z, 0, 0, 0, false, false, true, true, false, true);
 		
 			if (IS_ENTITY_A_MISSION_ENTITY(entity))
 			{
