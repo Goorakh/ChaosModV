@@ -88,16 +88,13 @@ namespace Memory
 
 	Handle FindPattern(const std::string& szPattern, DWORD64 startAddr, DWORD64 size)
 	{
-		std::vector<short> rgBytes;
-
-		std::string szSub = szPattern;
 		std::string szCopy = szPattern;
-		for (size_t pos = szCopy.find("??"); pos != std::string::npos; pos = szCopy.find("??", pos + 1))
+		for (size_t pos = szCopy.find("??"); pos != std::string::npos; pos = szCopy.find("??", pos+1))
 		{
 			szCopy.replace(pos, 2, "?");
 		}
 		
-		hook::pattern pattern(szCopy);
+		hook::pattern pattern(startAddr, startAddr + size, szCopy);
 		if (!pattern.size())
 		{
 			LOG("Couldn't find pattern \"" << szPattern << "\"");
