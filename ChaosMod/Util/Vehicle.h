@@ -170,7 +170,7 @@ inline void SetVehicleUpgrades(Vehicle veh, VehicleUpgradeCollection upgrades)
 	SET_VEHICLE_TYRES_CAN_BURST(veh, upgrades.tyresCanBurst);
 	SET_VEHICLE_WINDOW_TINT(veh, upgrades.windowTint);
 
-	if ((upgrades.colourMode & 0b10) != 0) // No custom colour
+	if ((upgrades.colourMode & 0b10) == 0) // No custom colour
 	{
 		CLEAR_VEHICLE_CUSTOM_PRIMARY_COLOUR(veh);
 		CLEAR_VEHICLE_CUSTOM_SECONDARY_COLOUR(veh);
