@@ -10,7 +10,7 @@ static void OnTick()
 {
 	Ped player = PLAYER_PED_ID();
 
-	if (!monsterHead)
+	if (!monsterHead || !DOES_ENTITY_EXIST(monsterHead))
 	{
 		static const Hash monsterHash = GET_HASH_KEY("sum_prop_ac_monstermask_01a");
 		LoadModel(monsterHash);
