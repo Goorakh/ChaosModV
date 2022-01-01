@@ -4,38 +4,6 @@
 
 #include <stdafx.h>
 
-static Vector3 getVector3(auto offset)
-{
-	return Vector3(
-		*reinterpret_cast<float*>(offset),
-		*reinterpret_cast<float*>(offset + 0x4),
-		*reinterpret_cast<float*>(offset + 0x8)
-	);
-}
-
-static void setVector3(auto offset, Vector3 vec)
-{
-	*reinterpret_cast<float*>(offset) = vec.x;
-	*reinterpret_cast<float*>(offset + 0x4) = vec.y;
-	*reinterpret_cast<float*>(offset + 0x8) = vec.z;
-}
-
-static void multiplyMatrix(auto offset, float multiplier)
-{
-	auto address = offset + 0x60;											// a matrix for passengers
-	auto address2 = *reinterpret_cast<uintptr_t*>(offset + 0x30) + 0x20;	// a matrix for vehicle
-	Vector3 fv = getVector3(address + 0x00);
-	Vector3 rv = getVector3(address + 0x10);
-	Vector3 uv = getVector3(address + 0x20);
-
-	setVector3(address + 0x00, fv * multiplier);
-	setVector3(address + 0x10, rv * multiplier);
-	setVector3(address + 0x20, uv * multiplier);
-	setVector3(address2 + 0x00, fv * multiplier);
-	setVector3(address2 + 0x10, rv * multiplier);
-	setVector3(address2 + 0x20, uv * multiplier);
-}
-
 static void OnTick()
 {
 	static DWORD64 lastTick = GET_GAME_TIMER();
@@ -100,7 +68,7 @@ static void OnTick()
 			}
 			if (length - savedLength < 0.1f)
 			{
-				multiplyMatrix(getScriptHandleBaseAddress(vehicle), multiplier * g_MetaInfo.m_fChaosMultiplier);
+				Memory::SetVehicleScale(vehicle, multiplier * g_MetaInfo.m_fChaosMultiplier);
 			}
 		}
 	}
