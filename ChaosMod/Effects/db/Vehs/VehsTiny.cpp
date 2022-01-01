@@ -46,7 +46,7 @@ static void OnTick()
 
 			if (vehicleMatrices.count(veh) == 0 || !vehicleMatrices[veh].Equals(matrix)) // If matrix has changed
 			{
-				Memory::SetVehicleScale(veh, 0.5f);
+				Memory::SetVehicleScale(veh, 0.5f / g_MetaInfo.m_fChaosMultiplier);
 				vehicleMatrices[veh] = VehicleMatrix(veh); // Deliberately not using the already declared matrix to include the changes made by Memory::SetVehicleScale
 			}
 		}
