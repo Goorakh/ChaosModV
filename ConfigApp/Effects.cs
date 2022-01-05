@@ -359,6 +359,7 @@ namespace ConfigApp
             EFFECT_VEHS_WIGGLE_CHANGES_SIZE,
             EFFECT_VEHS_TINY,
             EFFECT_PLAYER_LAGGY_CAMERA,
+            EFFECT_PLAYER_TP_TO_EVERYTHING,
             _EFFECT_ENUM_MAX
         }
 
@@ -682,6 +683,7 @@ namespace ConfigApp
             {EffectType.EFFECT_VEHS_WIGGLE_CHANGES_SIZE, new EffectInfo("Wiggle-Wiggle", EffectCategory.VEHICLE, "veh_wiggle_changes_size", true)},
             {EffectType.EFFECT_VEHS_TINY, new EffectInfo("Tiny Vehicles", EffectCategory.VEHICLE, "vehs_tiny", true)},
             {EffectType.EFFECT_PLAYER_LAGGY_CAMERA, new EffectInfo("Delayed Camera", EffectCategory.PLAYER, "player_laggy_camera", true)},
+            {EffectType.EFFECT_PLAYER_TP_TO_EVERYTHING, new EffectInfo("Teleporter Malfunction", EffectCategory.PLAYER, "player_tp_to_everything", true, true)},
         };
     }
 }
