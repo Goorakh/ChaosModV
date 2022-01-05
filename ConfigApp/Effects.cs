@@ -357,6 +357,7 @@ namespace ConfigApp
             EFFECT_PEDS_RANDOMBROTHERS,
             EFFECT_VEHS_WIGGLE_CHANGES_SIZE,
             EFFECT_VEHS_TINY,
+            EFFECT_PLAYER_LAGGY_CAMERA,
             _EFFECT_ENUM_MAX
         }
 
@@ -678,6 +679,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PEDS_RANDOMBROTHERS, new EffectInfo("Random Brothers", EffectCategory.PEDS, "peds_randombrothers")},
             {EffectType.EFFECT_VEHS_WIGGLE_CHANGES_SIZE, new EffectInfo("Wiggle-Wiggle", EffectCategory.VEHICLE, "veh_wiggle_changes_size", true)},
             {EffectType.EFFECT_VEHS_TINY, new EffectInfo("Tiny Vehicles", EffectCategory.VEHICLE, "vehs_tiny", true)},
+            {EffectType.EFFECT_PLAYER_LAGGY_CAMERA, new EffectInfo("Delayed Camera", EffectCategory.PLAYER, "player_laggy_camera", true)},
         };
     }
 }
