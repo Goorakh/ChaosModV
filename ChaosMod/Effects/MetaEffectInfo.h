@@ -10,6 +10,7 @@ struct MetaEffectInfo
 	bool m_bShouldHideChaosUI = false;
 	bool m_bDisableChaos = false;
 	float m_fChaosMultiplier = 1;
+	bool m_bFlipChaosUI = false;
 };
 
 inline MetaEffectInfo g_MetaInfo;
