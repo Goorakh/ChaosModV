@@ -23,7 +23,7 @@ static void OnTick()
 	}
 
 	//check if stat this tick is larger than stat last tick
-	if ((g_MetaInfo.m_fChaosMultiplier > 1 && /*78 = is aiming weapon*/ GET_PED_CONFIG_FLAG(playerPed, 78, 1)) || (lastPlayerHits >= 0 && playerHits > lastPlayerHits))
+	if ((g_MetaInfo.m_fChaosMultiplier > 1 && /*78 = is aiming weapon*/ GET_PED_CONFIG_FLAG(playerPed, 78, 1)) || (lastPlayerKills >= 0 && allPlayerKills > lastPlayerKills))
 	{
 		START_ENTITY_FIRE(playerPed);
 		SET_ENTITY_HEALTH(playerPed, 0, 0);
