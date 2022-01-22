@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-static float sphereRadius = 10.f;
+#define SPHERE_RADIUS 10.f / g_MetaInfo.m_fChaosMultiplier
 
 static void OnTick()
 {
@@ -57,13 +57,13 @@ static void OnTick()
 				SET_PED_TO_RAGDOLL(entity, 5000, 5000, 0, true, true, false);
 			}
 
-			if (distance < sphereRadius * .9) // entity is inside the sphere
+			if (distance < SPHERE_RADIUS * .9) // entity is inside the sphere
 			{
 				SET_ENTITY_VELOCITY(entity, playerSpeed.x, playerSpeed.y, playerSpeed.z); // stop the entity relatively to player
 
 				Memory::ApplyForceToEntity(entity, 3, entityCoord.x - playerCoord.x, entityCoord.y - playerCoord.y, entityCoord.z - playerCoord.z, 0, 0, 0, false, false, true, true, false, true);
 			}
-			else if (distance > sphereRadius * 1.1) // entity is outside the sphere
+			else if (distance > SPHERE_RADIUS * 1.1) // entity is outside the sphere
 			{
 				Memory::ApplyForceToEntity(entity, 3, (entityCoord.x - playerCoord.x) * -1.f, (entityCoord.y - playerCoord.y) * -1.f, (entityCoord.z - playerCoord.z) * -1.f, 0, 0, 0, false, false, true, true, false, true);
 			}
