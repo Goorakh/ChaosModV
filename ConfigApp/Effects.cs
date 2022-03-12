@@ -363,6 +363,7 @@ namespace ConfigApp
             EFFECT_PLAYER_TP_TO_EVERYTHING,
             EFFECT_MISC_CLONE_ON_DEATH,
             EFFECT_MISC_JUMPY_PROPS,
+            EFFECT_VEHS_CLOWN_CARS,
             _EFFECT_ENUM_MAX
         }
 
@@ -690,6 +691,7 @@ namespace ConfigApp
             {EffectType.EFFECT_PLAYER_TP_TO_EVERYTHING, new EffectInfo("Teleporter Malfunction", EffectCategory.PLAYER, "player_tp_to_everything", true, true)},
             {EffectType.EFFECT_MISC_CLONE_ON_DEATH, new EffectInfo("Resurrection Day", EffectCategory.MISC, "misc_clone_on_death", true, true)},
             {EffectType.EFFECT_MISC_JUMPY_PROPS, new EffectInfo("Jumpy Props", EffectCategory.MISC, "misc_jumpy_props", true)},
+            {EffectType.EFFECT_VEHS_CLOWN_CARS, new EffectInfo("Clown Cars", EffectCategory.VEHICLE, "vehs_clown_cars", true)},
         };
     }
 }
