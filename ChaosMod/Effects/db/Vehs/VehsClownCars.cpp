@@ -100,7 +100,7 @@ static void OnTick()
 			Ped copy = clown;
 			SET_PED_AS_NO_LONGER_NEEDED(&copy);
 
-			nextClownSpawnTick = GET_GAME_TIMER() + g_Random.GetRandomInt(900, 1800);
+			nextClownSpawnTick = GET_GAME_TIMER() + (g_Random.GetRandomInt(900, 1800) / g_MetaInfo.m_fChaosMultiplier);
 		}
 	}
 
