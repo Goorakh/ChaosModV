@@ -159,6 +159,7 @@
     <ClCompile Include="Effects\db\Player\PlayerSpinCam.cpp" />
     <ClCompile Include="Effects\db\Player\PlayerZoomZoomCam.cpp" />
     <ClCompile Include="Effects\db\Player\PlayerSickCam.cpp" />
+    <ClCompile Include="Effects\db\Time\Time2x.cpp" />
     <ClCompile Include="Effects\db\Vehs\VehsCrumble.cpp" />
     <ClCompile Include="Effects\db\Vehs\VehsPropModels.cpp" />
     <ClCompile Include="Effects\db\Vehs\VehsReplaceVehicle.cpp" />
@@ -387,6 +388,7 @@
     <ClInclude Include="Memory\PedModels.h" />
     <ClInclude Include="Memory\Script.h" />
     <ClInclude Include="Memory\Snow.h" />
+    <ClInclude Include="Memory\Timescale.h" />
     <ClInclude Include="Memory\UI.h" />
     <ClInclude Include="Memory\Vehicle.h" />
     <ClInclude Include="Memory\WeaponPool.h" />
