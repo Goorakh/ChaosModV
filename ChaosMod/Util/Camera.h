@@ -4,11 +4,11 @@
 
 namespace Util
 {
-	inline Vector3 GetGameplayCamOffsetInWorldCoords(const Vector3& vOffset)
+	inline void GetGameplayCamMatrix(Vector3 *forward, Vector3 *right, Vector3 *up)
 	{
 		// Thanks to scripthookvdotnet!
 		Vector3 vRot = GET_GAMEPLAY_CAM_ROT(2);
-		Vector3 vForward = vRot.GetDirectionForRotation();
+		*forward = vRot.GetDirectionForRotation();
 
 		static const double c_dD2R = 0.01745329251994329576923690768489;
 
@@ -17,8 +17,15 @@ namespace Util
 		float fY = fNum1 * sin(vRot.z * c_dD2R);
 		float fZ = sin(-vRot.y * c_dD2R);
 
-		Vector3 vRight = Vector3::Init(fX, fY, fZ);
-		Vector3 vUp = Vector3::Cross(vRight, vForward);
+		*right = Vector3::Init(fX, fY, fZ);
+		*up = Vector3::Cross(*right, *forward);
+	}
+
+	inline Vector3 GetGameplayCamOffsetInWorldCoords(const Vector3& vOffset)
+	{
+		Vector3 vForward, vRight, vUp;
+		GetGameplayCamMatrix(&vForward, &vRight, &vUp);
+
 		return GET_GAMEPLAY_CAM_COORD() + (vRight * vOffset.x) + (vForward * vOffset.y) + (vUp * vOffset.z);
 	}
 
