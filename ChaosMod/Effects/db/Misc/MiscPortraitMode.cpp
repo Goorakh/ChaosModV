@@ -18,7 +18,7 @@ static void OnTick()
 	DRAW_RECT((currentBoxWidth / 2), 0.5, currentBoxWidth, 1, 0, 0, 0, 255, false); // Left bar
 	DRAW_RECT(1 - (currentBoxWidth / 2), 0.5, currentBoxWidth, 1, 0, 0, 0, 255, false); // Right bar
 	
-	double maxWidth = 0.5 - ((0.5 - maxBoxWidth) / g_MetaInfo.m_fChaosMultiplier);
+	double maxWidth = 0.5 - ((0.5 - maxBoxWidth) / MetaModifiers::m_fChaosMultiplier);
 
 	if (currentBoxWidth < maxWidth)
 	{

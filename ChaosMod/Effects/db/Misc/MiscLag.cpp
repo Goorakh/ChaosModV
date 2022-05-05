@@ -17,7 +17,7 @@ static void OnTickLag()
 	static DWORD64 lastTick = 0;
 	DWORD64 curTick = GET_GAME_TIMER();
 
-	if (curTick > lastTick + (500 / g_MetaInfo.m_fChaosMultiplier))
+	if (curTick > lastTick + (500 / MetaModifiers::m_fChaosMultiplier))
 	{
 		lastTick = curTick;
 

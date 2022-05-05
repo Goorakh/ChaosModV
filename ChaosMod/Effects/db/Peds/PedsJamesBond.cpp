@@ -23,7 +23,7 @@ static void OnStart()
 
 	float heading = GET_ENTITY_HEADING(IS_PED_IN_ANY_VEHICLE(playerPed, false) ? GET_VEHICLE_PED_IS_IN(playerPed, false) : playerPed);
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
 		float x_pos = sin((360 - heading) * PI / 180) * (10 * (i + 1));
 		float y_pos = cos((360 - heading) * PI / 180) * (10 * (i + 1));

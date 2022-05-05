@@ -192,9 +192,9 @@ void TwitchVoting::Run()
 			g_pEffectDispatcher->ResetTimer();
 		}
 
-		if (g_MetaInfo.m_ucAdditionalEffectsToDispatch > 0) 
+		if (MetaModifiers::m_ucAdditionalEffectsToDispatch > 0)
 		{
-			for (int i = 0; i < g_MetaInfo.m_ucAdditionalEffectsToDispatch; i++)
+			for (int i = 0; i < MetaModifiers::m_ucAdditionalEffectsToDispatch; i++)
 			{
 				g_pEffectDispatcher->DispatchRandomEffect();
 			}
@@ -235,8 +235,9 @@ void TwitchVoting::Run()
 			auto& [effectIdentifier, effectData] = pair;
 
 			if (effectData.TimedType != EEffectTimedType::Permanent
-				&& !effectData.IsMeta
-				&& !effectData.ExcludedFromVoting)
+				&& !effectData.IsMeta()
+				&& !effectData.ExcludedFromVoting()
+				&& !effectData.IsUtility())
 			{
 				dictChoosableEffects.emplace(effectIdentifier, effectData);
 			}
@@ -289,14 +290,14 @@ void TwitchVoting::Run()
 					{
 						if (!doEffectActivationCheck || g_pEffectDispatcher->CanActivateEffect(effectData, g_pEffectDispatcher->GetRemainingTimerTime()))
 						{
-							pTargetChoice = std::make_unique<ChoosableEffect>(effectIdentifier, effectData.HasCustomName
-								? effectData.CustomName
-								: effectData.Name,
+							pTargetChoice = std::make_unique<ChoosableEffect>(effectIdentifier, effectData.HasCustomName()
+									? effectData.CustomName
+									: effectData.Name,
 								!m_bAlternatedVotingRound
-								? idx + 1
-								: m_bEnableTwitchRandomEffectVoteable
-								? idx + 5
-								: idx + 4
+									? idx + 1
+									: m_bEnableTwitchRandomEffectVoteable
+										? idx + 5
+										: idx + 4
 								);
 
 							foundValidEffect = true;

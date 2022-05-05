@@ -4,8 +4,8 @@
 
 #include <stdafx.h>
 
-#define SPEED (0.003 * g_MetaInfo.m_fChaosMultiplier)
-#define BOX_HEIGHT_RATIO (0.45 / g_MetaInfo.m_fChaosMultiplier) // Make box smaller with higher multipliers
+#define SPEED (0.003 * MetaModifiers::m_fChaosMultiplier)
+#define BOX_HEIGHT_RATIO (0.45 / MetaModifiers::m_fChaosMultiplier) // Make box smaller with higher multipliers
 
 static double boxWidth, boxHeight, offsetX, offsetY;
 static bool goingDown = true, goingRight = true;

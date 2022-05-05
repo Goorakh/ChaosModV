@@ -10,7 +10,7 @@ static void OnStart()
 	{
 		if (!IS_PED_DEAD_OR_DYING(ped, true))
 		{
-			TASK_HANDS_UP(ped, 5000 * g_MetaInfo.m_fChaosMultiplier, 0, -1, true);
+			TASK_HANDS_UP(ped, 5000 * MetaModifiers::m_fChaosMultiplier, 0, -1, true);
 			SET_PED_DROPS_WEAPON(ped);
 		}
 	}

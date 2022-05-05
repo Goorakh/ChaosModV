@@ -30,7 +30,7 @@ static void OnTick()
 		}
 	}
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier - 1; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier - 1; i++)
 	{
 		WAIT(3000);
 

@@ -8,11 +8,11 @@
 struct VehicleMatrix
 {
 	Vector3 rightVec, forwardVec, upVec, pos;
-	
+
 	VehicleMatrix() = default;
 
 	VehicleMatrix(Vehicle veh)
-	{
+{
 		GET_ENTITY_MATRIX(veh, &rightVec, &forwardVec, &upVec, &pos);
 	}
 
@@ -30,7 +30,7 @@ struct VehicleMatrix
 			   pos.x == other.pos.x &&
 			   pos.y == other.pos.y &&
 			   pos.z == other.pos.z;
-	}
+}
 };
 
 static std::map<Vehicle, VehicleMatrix> vehicleMatrices;
@@ -46,7 +46,7 @@ static void OnTick()
 
 			if (vehicleMatrices.count(veh) == 0 || !vehicleMatrices[veh].Equals(matrix)) // If matrix has changed
 			{
-				Memory::SetVehicleScale(veh, 0.5f / g_MetaInfo.m_fChaosMultiplier);
+				Memory::SetVehicleScale(veh, 0.5f / MetaModifiers::m_fChaosMultiplier);
 				vehicleMatrices[veh] = VehicleMatrix(veh); // Deliberately not using the already declared matrix to include the changes made by Memory::SetVehicleScale
 			}
 		}

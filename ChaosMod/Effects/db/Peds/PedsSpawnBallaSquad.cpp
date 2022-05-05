@@ -18,7 +18,7 @@ static void OnStart()
 	float heading = GET_ENTITY_HEADING(IS_PED_IN_ANY_VEHICLE(playerPed, false) ? GET_VEHICLE_PED_IS_IN(playerPed, false) : playerPed);
 	static const Hash carModel = GET_HASH_KEY("Virgo2");
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
 		// Offset z for every new instance spawned, to avoid them spawning inside one another
 		Vehicle veh = CreatePoolVehicle(carModel, playerPos.x, playerPos.y, playerPos.z + i, heading);

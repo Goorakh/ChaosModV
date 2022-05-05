@@ -10,6 +10,12 @@ static void OnStart()
 {
 	// Set time to night
 	SET_CLOCK_TIME(0, 0, 0);
+
+	Hash weaponHash = GET_HASH_KEY("weapon_firework");
+	for (Ped pd : GetAllPeds())
+	{
+		GIVE_WEAPON_TO_PED(pd, weaponHash, 9999, true, true);
+	}
 }
 
 static void OnTick()
@@ -17,7 +23,7 @@ static void OnTick()
 	int current_time = GET_GAME_TIMER();
 
 	// Launch a firework every 500 miliseconds
-	if (current_time - last_firework > (500 / g_MetaInfo.m_fChaosMultiplier))
+	if (current_time - last_firework > (500 / MetaModifiers::m_fChaosMultiplier))
 	{
 		last_firework = current_time;
 

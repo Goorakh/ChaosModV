@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-#define NUM_CLONES (8 * g_MetaInfo.m_fChaosMultiplier)
+#define NUM_CLONES (8 * MetaModifiers::m_fChaosMultiplier)
 
 static void OnStart()
 {

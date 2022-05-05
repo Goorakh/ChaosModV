@@ -21,7 +21,7 @@ static void OnStart()
 	SET_RELATIONSHIP_BETWEEN_GROUPS(5, relationshipGroup, civGroup);
 	SET_RELATIONSHIP_BETWEEN_GROUPS(5, relationshipGroup, femCivGroup);
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
 		Ped ped = CreatePoolPed(4, modelHash, playerPos.x, playerPos.y, playerPos.z, 0.f);
 		if (IS_PED_IN_ANY_VEHICLE(playerPed, false))

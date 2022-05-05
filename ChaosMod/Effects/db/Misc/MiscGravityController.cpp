@@ -9,7 +9,7 @@ static void OnTickLow()
 {
 	// Multiplier = 1: GravityLevel = 1
 	// Multiplier = 2: GravityLevel = 2
-	SET_GRAVITY_LEVEL(min(g_MetaInfo.m_fChaosMultiplier, 3));
+	SET_GRAVITY_LEVEL(min(MetaModifiers::m_fChaosMultiplier, 3));
 }
 
 static RegisterEffect registerEffect1(EFFECT_LOW_GRAV, nullptr, OnStop, OnTickLow, EffectInfo
@@ -25,7 +25,7 @@ static void OnTickVeryLow()
 {
 	// Multiplier = 1: GravityLevel = 2
 	// Multiplier = 2: GravityLevel = 3
-	SET_GRAVITY_LEVEL(min(1 + g_MetaInfo.m_fChaosMultiplier, 3));
+	SET_GRAVITY_LEVEL(min(1 + MetaModifiers::m_fChaosMultiplier, 3));
 }
 
 static RegisterEffect registerEffect2(EFFECT_VERY_LOW_GRAV, nullptr, OnStop, OnTickVeryLow, EffectInfo
@@ -39,7 +39,7 @@ static RegisterEffect registerEffect2(EFFECT_VERY_LOW_GRAV, nullptr, OnStop, OnT
 );
 static void OnTickInsane()
 {
-	Memory::SetGravityLevel(200.f * g_MetaInfo.m_fChaosMultiplier);
+	Memory::SetGravityLevel(200.f * MetaModifiers::m_fChaosMultiplier);
 
 	for (auto ped : GetAllPeds())
 	{
@@ -47,13 +47,13 @@ static void OnTickInsane()
 		{
 			SET_PED_TO_RAGDOLL(ped, 1000, 1000, 0, true, true, false);
 
-			Memory::ApplyForceToEntityCenterOfMass(ped, 0, 0, 0, -75.f * g_MetaInfo.m_fChaosMultiplier, false, false, true, false);
+			Memory::ApplyForceToEntityCenterOfMass(ped, 0, 0, 0, -75.f * MetaModifiers::m_fChaosMultiplier, false, false, true, false);
 		}
 	}
 
 	for (auto object : GetAllProps())
 	{
-		Memory::ApplyForceToEntityCenterOfMass(object, 0, 0, 0, -200.f * g_MetaInfo.m_fChaosMultiplier, false, false, true, false);
+		Memory::ApplyForceToEntityCenterOfMass(object, 0, 0, 0, -200.f * MetaModifiers::m_fChaosMultiplier, false, false, true, false);
 	}
 }
 
@@ -73,7 +73,7 @@ static void OnStartInvert()
 
 static void OnTickInvert()
 {
-	Memory::SetGravityLevel(-9.8f * g_MetaInfo.m_fChaosMultiplier);
+	Memory::SetGravityLevel(-9.8f * MetaModifiers::m_fChaosMultiplier);
 
 	for (auto ped : GetAllPeds())
 	{
@@ -118,7 +118,7 @@ static void OnTickSideways()
 {
 	Memory::SetGravityLevel(0.f);
 
-	Vector3 gravityForce = sidewaysGravityForce * g_MetaInfo.m_fChaosMultiplier;
+	Vector3 gravityForce = sidewaysGravityForce * MetaModifiers::m_fChaosMultiplier;
 
 	for (auto ped : GetAllPeds())
 	{

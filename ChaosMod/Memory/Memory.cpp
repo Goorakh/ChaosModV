@@ -77,28 +77,26 @@ namespace Memory
 				LOG("Error while executing " << pRegisteredHook->GetName() << " hook");
 			}
 		}
-
-		TryEnableMPCars();
 	}
 
-	Handle FindPattern(const std::string& szPattern)
+	Handle FindPattern(const std::string& szPattern, const PatternScanRange&& scanRange)
 	{
-		return FindPattern(szPattern, ms_ullBaseAddr, ms_ullEndAddr - ms_ullBaseAddr);
-	}
+		if ((scanRange.m_startAddr != 0 || scanRange.m_endAddr != 0) && scanRange.m_startAddr >= scanRange.m_endAddr)
+		{
+			LOG("startAddr is equal / bigger than endAddr???");
+			return Handle();
+		}
 
-	Handle FindPattern(const std::string& szPattern, DWORD64 startAddr, DWORD64 size)
-	{
 		std::string szCopy = szPattern;
 		for (size_t pos = szCopy.find("??"); pos != std::string::npos; pos = szCopy.find("??", pos+1))
 		{
 			szCopy.replace(pos, 2, "?");
 		}
 		
-		hook::pattern pattern(startAddr, startAddr + size, szCopy);
+		hook::pattern pattern = scanRange.m_startAddr == 0 && scanRange.m_endAddr == 0
+			? hook::pattern(szCopy) : hook::pattern(scanRange.m_startAddr, scanRange.m_endAddr, szCopy);
 		if (!pattern.size())
 		{
-			LOG("Couldn't find pattern \"" << szPattern << "\"");
-			
 			return Handle();
 		}
 

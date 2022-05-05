@@ -191,7 +191,7 @@ static bool checkPedsAlive(std::vector<Ped> pedList)
 
 static void OnTick()
 {
-	while (helicopterGroups.size() < g_MetaInfo.m_fChaosMultiplier)
+	while (helicopterGroups.size() < MetaModifiers::m_fChaosMultiplier)
 	{
 		helicopterGroups.push_back(spawnBuzzard());
 	}
@@ -208,7 +208,7 @@ static void OnTick()
 		}
 	}
 
-	while (mesaGroups.size() < g_MetaInfo.m_fChaosMultiplier)
+	while (mesaGroups.size() < MetaModifiers::m_fChaosMultiplier)
 	{
 		mesaGroups.push_back(spawnMesa());
 	}

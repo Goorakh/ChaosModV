@@ -25,7 +25,7 @@ static void OnTick()
 
 		PropData data = propDataMap[prop];
 
-		float Z = data.originalZ + (max(sin(((GET_GAME_TIMER() - data.startOffset) / 150.f) * g_MetaInfo.m_fChaosMultiplier) * 2.5f * g_MetaInfo.m_fChaosMultiplier, 0.f));
+		float Z = data.originalZ + (max(sin(((GET_GAME_TIMER() - data.startOffset) / 150.f) * MetaModifiers::m_fChaosMultiplier) * 2.5f * MetaModifiers::m_fChaosMultiplier, 0.f));
 
 		SET_ENTITY_COORDS(prop, coords.x, coords.y, Z, false, false, false, false);
 	}

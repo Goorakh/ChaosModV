@@ -164,7 +164,7 @@ static void ScaleformReset()
 
 static void OnStart()
 {
-    for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+    for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
     {
         act = TimerAction::NONE;
         timer = 0;
@@ -247,7 +247,7 @@ static void OnStart()
                             timer = MISC::GET_GAME_TIMER() + 2000;
                             act = TimerAction::KILL;
                             ScaleformRemove();
-                            AUDIO::_PLAY_AMBIENT_SPEECH1(PLAYER::PLAYER_PED_ID(), "GENERIC_CURSE_HIGH", "SPEECH_PARAMS_FORCE_FRONTEND", 1);
+                            AUDIO::PLAY_PED_AMBIENT_SPEECH_NATIVE(PLAYER::PLAYER_PED_ID(), "GENERIC_CURSE_HIGH", "SPEECH_PARAMS_FORCE_FRONTEND", 1);
                         }
                         else
                         {

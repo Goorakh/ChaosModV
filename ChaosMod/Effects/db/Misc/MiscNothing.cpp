@@ -21,8 +21,10 @@ static std::array options =
 	"Teleport All Elephants To Player",
 	"PC Experience",
 	"All Enemies Attack Player",
+	"No Crash",
 	" "
 };
+
 
 static void OnStart()
 {

@@ -2,12 +2,12 @@
 
 static void OnStop()
 {
-	_0xA76359FC80B2438E(1.f);
+	OVERRIDE_LODSCALE_THIS_FRAME(1.f);
 }
 
 static void OnTick()
 {
-	_0xA76359FC80B2438E(.04f / g_MetaInfo.m_fChaosMultiplier);
+	OVERRIDE_LODSCALE_THIS_FRAME(.04f / MetaModifiers::m_fChaosMultiplier);
 
 	// By Juhana
 	for (Ped ped : GetAllPeds())

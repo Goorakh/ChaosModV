@@ -124,7 +124,6 @@ namespace ConfigApp
             EFFECT_PEDS_FOLLOW_PLAYER,
             EFFECT_PLAYER_DRUNK,
             EFFECT_PEDS_OHKO,
-            EFFECT_SCREEN_BLOOM,
             EFFECT_SCREEN_LSD,
             EFFECT_SCREEN_RENDERDIST,
             EFFECT_SCREEN_FOG,
@@ -341,6 +340,8 @@ namespace ConfigApp
             EFFECT_SIDEWAYS_GRAVITY,
             EFFECT_PEDS_PROP_HUNT,
             EFFECT_PEDS_GRAPPLE_GUNS,
+            EFFECT_PLAYER_GRAVITY_SPHERE,
+            EFFECT_PLAYER_SICK_CAM,
             EFFECT_MISC_GHOST_WORLD,
             EFFECT_PLAYER_CLONE_ARMY,
             EFFECT_PEDS_HEADLESS,
@@ -366,6 +367,7 @@ namespace ConfigApp
             EFFECT_PLAYER_MONEY_IS_FUEL,
             EFFECT_VEHS_CLOWN_CARS,
             EFFECT_VEHS_PROP_MODELS,
+            EFFECT_VEHS_TINY,
             _EFFECT_ENUM_MAX
         }
 
@@ -455,7 +457,6 @@ namespace ConfigApp
             {EffectType.EFFECT_PEDS_FOLLOW_PLAYER, new EffectInfo("You Are Famous", EffectCategory.PEDS, "player_famous", true)},
             {EffectType.EFFECT_PLAYER_DRUNK, new EffectInfo("Drunk", EffectCategory.PLAYER, "player_drunk", true)},
             {EffectType.EFFECT_PEDS_OHKO, new EffectInfo("One Hit KO", EffectCategory.PEDS, "player_ohko", true)},
-            {EffectType.EFFECT_SCREEN_BLOOM, new EffectInfo("Bloom", EffectCategory.MISC, "screen_bloom", true)},
             {EffectType.EFFECT_SCREEN_LSD, new EffectInfo("LSD", EffectCategory.PLAYER, "screen_lsd", true)},
             {EffectType.EFFECT_SCREEN_RENDERDIST, new EffectInfo("Where Did Everything Go?", EffectCategory.MISC, "screen_lowrenderdist", true, true)},
             {EffectType.EFFECT_SCREEN_FOG, new EffectInfo("Extreme Fog", EffectCategory.MISC, "screen_fog", true, true)},
@@ -695,7 +696,10 @@ namespace ConfigApp
             {EffectType.EFFECT_MISC_JUMPY_PROPS, new EffectInfo("Jumpy Props", EffectCategory.MISC, "misc_jumpy_props", true)},
             {EffectType.EFFECT_VEHS_CLOWN_CARS, new EffectInfo("Clown Cars", EffectCategory.VEHICLE, "vehs_clown_cars", true)},
             {EffectType.EFFECT_PLAYER_MONEY_IS_FUEL, new EffectInfo("Money Fuel", EffectCategory.PLAYER, "player_money_is_fuel", true)},
+            {EffectType.EFFECT_PEDS_PROP_HUNT, new EffectInfo("Prop Hunt", EffectCategory.PEDS, "peds_prop_hunt", true)},
+            {EffectType.EFFECT_MISC_WATER, new EffectInfo("Drought", EffectCategory.MISC, "misc_remove_water", true)},
             {EffectType.EFFECT_VEHS_PROP_MODELS, new EffectInfo("Prop Cars", EffectCategory.VEHICLE, "vehs_prop_models", true)},
+            {EffectType.EFFECT_VEHS_TINY, new EffectInfo("Tiny Vehicles", EffectCategory.VEHICLE, "vehs_tiny", true)},
         };
     }
 }

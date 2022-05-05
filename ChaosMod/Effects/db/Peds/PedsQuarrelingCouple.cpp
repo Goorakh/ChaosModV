@@ -11,7 +11,7 @@ static void OnStart()
 	static const Hash pistolModelHash = GET_HASH_KEY("weapon_pistol");
 	static const Hash knifeModelHash = GET_HASH_KEY("weapon_knife");
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
 		CreateHostilePed(debraModelHash, pistolModelHash);
 		CreateHostilePed(floydModelHash, knifeModelHash);

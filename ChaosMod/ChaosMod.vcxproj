@@ -106,6 +106,7 @@
     <ClCompile Include="Effects\db\Misc\MiscHighPitch.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscJumpyProps.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscLowPitch.cpp" />
+    <ClCompile Include="Effects\db\Misc\MiscNoWater.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscPause.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscPedRain.cpp" />
     <ClCompile Include="Effects\db\Misc\MiscPortraitMode.cpp" />
@@ -358,7 +359,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="EffectThreads.cpp" />
+    <ClCompile Include="Effects\EffectThreads.cpp" />
     <ClCompile Include="Components\TwitchVoting.cpp" />
     <ClCompile Include="Mp3Manager.cpp" />
     <ClCompile Include="Util\PoolSpawner.cpp" />
@@ -375,19 +376,22 @@
     <ClInclude Include="Components\ShortCut.h" />
     <ClInclude Include="EffectConfig.h" />
     <ClInclude Include="Effects\db\Player\PlayerBlimpStrats.h" />
+    <ClInclude Include="Effects\EffectConfig.h" />
+    <ClInclude Include="Effects\EEffectAttributes.h" />
     <ClInclude Include="Effects\EffectData.h" />
     <ClInclude Include="Effects\EEffectExecutionType.h" />
     <ClInclude Include="Effects\EffectGroups.h" />
     <ClInclude Include="Effects\Effect.h" />
     <ClInclude Include="Effects\EffectIdentifier.h" />
     <ClInclude Include="Effects\EffectsInfo.h" />
-    <ClInclude Include="Effects\MetaEffectInfo.h" />
+    <ClInclude Include="Effects\MetaModifiers.h" />
     <ClInclude Include="Effects\EEffectTimedType.h" />
     <ClInclude Include="Effects\EnabledEffectsMap.h" />
     <ClInclude Include="Components\Failsafe.h" />
     <ClInclude Include="Lib\scrThread.h" />
     <ClInclude Include="LuaScripts.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Memory\Entity.h" />
     <ClInclude Include="Memory\EnableMPCars.h" />
     <ClInclude Include="Memory\Gravity.h" />
     <ClInclude Include="Memory\Physics.h" />
@@ -399,6 +403,7 @@
     <ClInclude Include="Memory\Memory.h" />
     <ClInclude Include="Memory\Misc.h" />
     <ClInclude Include="Memory\PedModels.h" />
+    <ClInclude Include="Memory\Script.h" />
     <ClInclude Include="Memory\Snow.h" />
     <ClInclude Include="Memory\UI.h" />
     <ClInclude Include="Memory\Vehicle.h" />
@@ -410,7 +415,7 @@
     <ClInclude Include="Util\OptionsFile.h" />
     <ClInclude Include="Util\Random.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="EffectThreads.h" />
+    <ClInclude Include="Effects\EffectThreads.h" />
     <ClInclude Include="Components\TwitchVoting.h" />
     <ClInclude Include="Util\Camera.h" />
     <ClInclude Include="Util\CrashHandler.h" />
@@ -429,6 +434,9 @@
     <ClInclude Include="Util\Types.h" />
     <ClInclude Include="Util\Vehicle.h" />
     <ClInclude Include="Util\Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ChaosMod.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

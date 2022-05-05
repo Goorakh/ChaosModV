@@ -17,7 +17,7 @@ static void OnTick()
 				int money;
 				if (STAT_GET_INT(hash, &money, -1))
 				{
-					int moneyToDrain = GET_ENTITY_SPEED(playerVeh) * 0.9f * g_MetaInfo.m_fChaosMultiplier;
+					int moneyToDrain = GET_ENTITY_SPEED(playerVeh) * 0.9f * MetaModifiers::m_fChaosMultiplier;
 					if (moneyToDrain > 0)
 					{
 						money -= moneyToDrain;

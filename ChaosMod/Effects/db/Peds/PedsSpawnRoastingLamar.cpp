@@ -22,7 +22,7 @@ static void OnStart()
 
 	lamarPeds = {};
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
 		Ped lamarPed = CREATE_PED(4, lamarModel, playerPos.x, playerPos.y, playerPos.z, GET_ENTITY_HEADING(playerPed), true, false);
 
@@ -42,11 +42,11 @@ static void OnStart()
 
 	for (Ped lamar : lamarPeds)
 	{
-		_PLAY_AMBIENT_SPEECH1(lamar, "GENERIC_HI", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
+		PLAY_PED_AMBIENT_SPEECH_NATIVE(lamar, "GENERIC_HI", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
 	}
 
 	WAIT(1500);
-	_PLAY_AMBIENT_SPEECH1(playerPed, "GENERIC_FUCK_YOU", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
+	PLAY_PED_AMBIENT_SPEECH_NATIVE(playerPed, "GENERIC_FUCK_YOU", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
 	WAIT(2500);
 }
 
@@ -70,7 +70,7 @@ static void OnStop()
 
 	WAIT(1000);
 
-	_PLAY_AMBIENT_SPEECH1(playerPed, "GENERIC_SHOCKED_MED", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
+	PLAY_PED_AMBIENT_SPEECH_NATIVE(playerPed, "GENERIC_SHOCKED_MED", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
 
 	for (Ped lamar : lamarPeds)
 	{
@@ -120,7 +120,7 @@ static void OnTick()
 		{
 			if (DOES_ENTITY_EXIST(lamar))
 			{
-				_PLAY_AMBIENT_SPEECH1(lamar, "GENERIC_INSULT_MED", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
+				PLAY_PED_AMBIENT_SPEECH_NATIVE(lamar, "GENERIC_INSULT_MED", "SPEECH_PARAMS_FORCE_SHOUTED", 1);
 			}
 		}
 	}

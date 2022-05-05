@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-#define SPAWN_HEIGHT (50.f * g_MetaInfo.m_fChaosMultiplier)
+#define SPAWN_HEIGHT (50.f * MetaModifiers::m_fChaosMultiplier)
 
 // d = (a * t^2)/2
 // t = sqrt((d*2)/a)
@@ -26,7 +26,7 @@ static void OnTick()
 	static DWORD64 lastTick = 0;
 	DWORD64 curTick = GET_GAME_TIMER();
 
-	if (curTick > lastTick + (300 / g_MetaInfo.m_fChaosMultiplier))
+	if (curTick > lastTick + (300 / MetaModifiers::m_fChaosMultiplier))
 	{
 		lastTick = curTick;
 

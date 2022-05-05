@@ -9,7 +9,7 @@ static int constexpr CAM_DELAY_VEHICLE = 1000;
 
 static int GetTargetCamDelay()
 {
-	return (IS_PED_IN_ANY_VEHICLE(PLAYER_PED_ID(), true) ? CAM_DELAY_VEHICLE : CAM_DELAY_NORMAL) * g_MetaInfo.m_fChaosMultiplier;
+	return (IS_PED_IN_ANY_VEHICLE(PLAYER_PED_ID(), true) ? CAM_DELAY_VEHICLE : CAM_DELAY_NORMAL) * MetaModifiers::m_fChaosMultiplier;
 }
 
 struct CameraSnapshot

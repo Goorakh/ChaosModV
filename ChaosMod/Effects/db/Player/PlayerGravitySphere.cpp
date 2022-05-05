@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-#define SPHERE_RADIUS 10.f / g_MetaInfo.m_fChaosMultiplier
+#define SPHERE_RADIUS (10.f / MetaModifiers::m_fChaosMultiplier)
 
 static void OnTick()
 {

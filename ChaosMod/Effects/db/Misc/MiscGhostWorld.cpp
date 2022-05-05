@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-#define GetAlphaFor(ent) (((sin((ent * 20.f) + (GET_GAME_TIMER() / (125.f / g_MetaInfo.m_fChaosMultiplier))) + 1.f) / 2.f) * 255.f)
+#define GetAlphaFor(ent) (((sin((ent * 20.f) + (GET_GAME_TIMER() / (125.f / MetaModifiers::m_fChaosMultiplier))) + 1.f) / 2.f) * 255.f)
 
 static void OnTick()
 {

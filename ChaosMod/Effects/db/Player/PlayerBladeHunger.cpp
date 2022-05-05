@@ -50,7 +50,7 @@ static void OnTick()
 	static DWORD64 lastTick = 0;
 	DWORD64 curTick = GET_GAME_TIMER();
 
-	if (curTick > lastTick + (150 / g_MetaInfo.m_fChaosMultiplier))
+	if (curTick > lastTick + (150 / MetaModifiers::m_fChaosMultiplier))
 	{
 		lastTick = curTick;
 		fade++;

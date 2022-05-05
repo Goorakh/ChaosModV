@@ -6,7 +6,7 @@
 static Camera spinningCamera = 0;
 float camRot = 0.f;
 
-#define camRotRate (1.2f * g_MetaInfo.m_fChaosMultiplier)
+#define camRotRate (1.2f * MetaModifiers::m_fChaosMultiplier)
 
 static void UpdateCamera()
 {

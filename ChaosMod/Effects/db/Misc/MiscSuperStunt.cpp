@@ -28,7 +28,7 @@ static void OnStart()
 	Vector3 rampSize = max - min;
 
 	Object prevRamp = 0;
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
 		// Offset ramp to connect to the previous one
 		if (prevRamp)

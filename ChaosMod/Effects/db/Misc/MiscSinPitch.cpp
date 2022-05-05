@@ -9,7 +9,7 @@ static void OnStop()
 
 static void OnTick()
 {
-	Hooks::SetAudioPitch(SIN((GET_GAME_TIMER() / 7.f) * g_MetaInfo.m_fChaosMultiplier) * 1000.f * g_MetaInfo.m_fChaosMultiplier);
+	Hooks::SetAudioPitch(SIN((GET_GAME_TIMER() / 7.f) * MetaModifiers::m_fChaosMultiplier) * 1000.f * MetaModifiers::m_fChaosMultiplier);
 }
 
 static RegisterEffect registerEffect(EFFECT_MISC_SIN_PITCH, nullptr, OnStop, OnTick, EffectInfo

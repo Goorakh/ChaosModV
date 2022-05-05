@@ -62,7 +62,7 @@ static void OnTick()
 		}
 	}
 
-	if (kamiBomb.size() < (maxKamikazesToSpawn * g_MetaInfo.m_fChaosMultiplier) && current_time > spawnTimer + (2000 / g_MetaInfo.m_fChaosMultiplier))
+	if (kamiBomb.size() < (maxKamikazesToSpawn * MetaModifiers::m_fChaosMultiplier) && current_time > spawnTimer + (2000 / MetaModifiers::m_fChaosMultiplier))
 	{
 		spawnTimer = current_time;
 		Vector3 spawnPos = GetCoordAround(playerPed, g_Random.GetRandomInt(0, 360), 15, 0, true);

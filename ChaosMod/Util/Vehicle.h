@@ -302,7 +302,7 @@ inline void SetSurroundingPedsInVehicles(Hash vehicleHash, float maxDistance, fl
 				{
 					int pedType = GET_PED_TYPE(ped);
 					Hash pedModel = GET_ENTITY_MODEL(ped);
-					for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier - 1; i++)
+					for (int i = 0; i < MetaModifiers::m_fChaosMultiplier - 1; i++)
 					{
 						if (!ARE_ANY_VEHICLE_SEATS_FREE(veh))
 							break;
@@ -358,21 +358,47 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 			Ped seatPed = seatPeds[i].ped;
 			SET_ENTITY_COORDS(seatPed, coords.x, coords.y, coords.z + 5.f, 0, 0, 0, 0);
 		}
+	}
+}
+
+inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPed> seatPeds, bool addToPool, Vector3 coords, float heading, bool engineRunning, Vector3 velocity, float forwardSpeed)
+{
+	static const std::vector<Hash>& vehicleModels = Memory::GetAllVehModels();
+	if (vehicleModels.empty())
+		return oldHandle;
+
+	Hash newVehModel = 0;
+	do
+	{
+		newVehModel = vehicleModels[g_Random.GetRandomInt(0, vehicleModels.size() - 1)];
+	} while (GET_VEHICLE_MODEL_NUMBER_OF_SEATS(newVehModel) < seatPeds.size() || IS_THIS_MODEL_A_TRAIN(newVehModel) || GET_VEHICLE_MODEL_ACCELERATION(newVehModel) <= 0);
+
+	if (!newVehModel)
+		return oldHandle;
+
+	int numberOfSeats = GET_VEHICLE_MODEL_NUMBER_OF_SEATS(newVehModel);
+
+	Vehicle newVehicle;
+	if (addToPool)
+	{
+		for (int i = 0; i < seatPeds.size(); i++)
+		{
+			Ped seatPed = seatPeds[i].ped;
+			SET_ENTITY_COORDS(seatPed, coords.x, coords.y, coords.z + 5.f, 0, 0, 0, 0);
+		}
 
 		WAIT(100);
 
-		newVehicle = CreatePoolVehicle(newVehModel, coords.x, coords.y, coords.z, 0.f);
+		newVehicle = CreatePoolVehicle(newVehModel, coords.x, coords.y, coords.z, heading);
 	}
 	else
 	{
 		LoadModel(newVehModel);
-		newVehicle = CREATE_VEHICLE(newVehModel, coords.x, coords.y, coords.z, 0.f, true, true, true);
+		newVehicle = CREATE_VEHICLE(newVehModel, coords.x, coords.y, coords.z, heading, true, true, true);
 		SET_MODEL_AS_NO_LONGER_NEEDED(newVehModel);
 
 		SET_ENTITY_AS_MISSION_ENTITY(newVehicle, false, true);
 	}
-
-	SET_ENTITY_ROTATION(newVehicle, rotation.x, rotation.y, rotation.z, 2, true);
 
 	for (int i = 0; i < seatPeds.size(); i++)
 	{
@@ -392,6 +418,7 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 	}
 
 	SET_ENTITY_VELOCITY(newVehicle, velocity.x, velocity.y, velocity.z);
+	SET_VEHICLE_FORWARD_SPEED(newVehicle, forwardSpeed);
 
 	if (oldHandle)
 	{
@@ -411,17 +438,41 @@ inline Vehicle CreateRandomVehicleWithPeds(Vehicle oldHandle, std::vector<SeatPe
 		}
 	}
 
-	SetVehicleRandomUpgrades(newVehicle);
+	// Also apply random upgrades
+	SET_VEHICLE_MOD_KIT(newVehicle, 0);
+
+	SET_VEHICLE_WHEEL_TYPE(newVehicle, g_Random.GetRandomInt(0, 7));
+
+	for (int i = 0; i < 50; i++)
+	{
+		int max = GET_NUM_VEHICLE_MODS(newVehicle, i);
+		if (max > 0)
+		{
+			SET_VEHICLE_MOD(newVehicle, i, g_Random.GetRandomInt(0, max - 1), g_Random.GetRandomInt(0, 1));
+		}
+
+		TOGGLE_VEHICLE_MOD(newVehicle, i, g_Random.GetRandomInt(0, 1));
+	}
+
+	SET_VEHICLE_TYRES_CAN_BURST(newVehicle, g_Random.GetRandomInt(0, 1));
+	SET_VEHICLE_WINDOW_TINT(newVehicle, g_Random.GetRandomInt(0, 6));
+
+	SET_VEHICLE_CUSTOM_PRIMARY_COLOUR(newVehicle, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+	SET_VEHICLE_CUSTOM_SECONDARY_COLOUR(newVehicle, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+
+	_SET_VEHICLE_NEON_LIGHTS_COLOUR(newVehicle, g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255), g_Random.GetRandomInt(0, 255));
+	for (int i = 0; i < 4; i++)
+	{
+		_SET_VEHICLE_NEON_LIGHT_ENABLED(newVehicle, i, true);
+	}
+
+	_SET_VEHICLE_XENON_LIGHTS_COLOR(newVehicle, g_Random.GetRandomInt(0, 12));
 
 	return newVehicle;
 }
 
 inline Vehicle ReplaceVehicle(Vehicle veh, bool addToPool)
 {
-	static const std::vector<Hash>& vehicleModels = Memory::GetAllVehModels();
-	if (vehicleModels.empty())
-		return veh;
-
 	std::vector<SeatPed> vehPeds;
 	int numberOfSeats = GET_VEHICLE_MODEL_NUMBER_OF_SEATS(GET_ENTITY_MODEL(veh));
 	for (int i = -1; i < numberOfSeats - 1; i++)
@@ -434,28 +485,11 @@ inline Vehicle ReplaceVehicle(Vehicle veh, bool addToPool)
 		}
 	}
 
-	Vector3 rotation = GET_ENTITY_ROTATION(veh, 2);
+	float heading = GET_ENTITY_HEADING(veh);
 	Vector3 vehCoords = GET_ENTITY_COORDS(veh, 0);
 	bool engineRunning = GET_IS_VEHICLE_ENGINE_RUNNING(veh);
 	Vector3 velocity = GET_ENTITY_VELOCITY(veh);
+	float forwardSpeed = GET_ENTITY_SPEED(veh);
 
-	return CreateRandomVehicleWithPeds(veh, vehPeds, addToPool, vehCoords, rotation, engineRunning, velocity);
-}
-
-inline Vehicle ReplacePlayerVehicle()
-{
-	Ped player = PLAYER_PED_ID();
-	if (IS_PED_IN_ANY_VEHICLE(player, false))
-	{
-		return ReplaceVehicle(GET_VEHICLE_PED_IS_IN(player, false), false);
-	}
-	else
-	{
-		std::vector<SeatPed> peds = { { player, -1 } };
-		Vector3 coords = GET_ENTITY_COORDS(player, 0);
-		Vector3 rotation = GET_ENTITY_ROTATION(player, 2);
-		Vector3 velocity = GET_ENTITY_VELOCITY(player);
-
-		return CreateRandomVehicleWithPeds(0, peds, false, coords, rotation, false, velocity);
-	}
+	return CreateRandomVehicleWithPeds(veh, vehPeds, addToPool, vehCoords, heading, engineRunning, velocity, forwardSpeed);
 }

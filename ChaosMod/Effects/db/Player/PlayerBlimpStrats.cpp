@@ -1,5 +1,5 @@
 /*
-	Effect by Last0xygen, modified by Reguas
+	Effect by Last0xygen, modified
 */
 
 #include <stdafx.h>
@@ -8,9 +8,12 @@
 
 void BlimpStrats_Start(bool isFake)
 {
+	
+	Hooks::EnableScriptThreadBlock();
 	bool cutscenePlaying = IS_CUTSCENE_PLAYING();
 
 	Hash blimpHash = GET_HASH_KEY("blimp");
+	Hash daveHash = GET_HASH_KEY("ig_davenorton");
 
 	LoadModel(blimpHash);
 	
@@ -24,9 +27,9 @@ void BlimpStrats_Start(bool isFake)
 		Hooks::EnableScriptThreadBlock();
 	}
 
-	for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+	for (int i = 0; i < MetaInfo::m_fChaosMultiplier; i++)
 	{
-		Vehicle veh = CREATE_VEHICLE(blimpHash, -370.490, 1029.085, 345.090, 53.824, true, false, false);
+		Vehicle veh = CREATE_VEHICLE(blimpHash, -370.490f, 1029.085f, 345.090f, 53.824f, true, false, false);
 		SET_VEHICLE_ENGINE_ON(veh, true, true, false);
 		Ped player = PLAYER_PED_ID();
 
@@ -65,13 +68,13 @@ void BlimpStrats_Start(bool isFake)
 			WAIT(8500);
 			STOP_CUTSCENE_IMMEDIATELY();
 
-			if (i + 1 == g_MetaInfo.m_fChaosMultiplier)
+			if (i + 1 == MetaInfo::m_fChaosMultiplier)
 			{
 				REMOVE_CUTSCENE();
 			}
 		}
 
-		if (i + 1 < g_MetaInfo.m_fChaosMultiplier)
+		if (i + 1 < MetaInfo::m_fChaosMultiplier)
 		{
 			WAIT(3000);
 		}

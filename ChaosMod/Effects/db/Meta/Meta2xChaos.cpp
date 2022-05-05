@@ -6,12 +6,12 @@
 
 static void OnTick()
 {
-	g_MetaInfo.m_fChaosMultiplier = 2.f;
+	MetaModifiers::m_fChaosMultiplier = 2.f;
 }
 
 static void OnStop()
 {
-	g_MetaInfo.m_fChaosMultiplier = 1.f;
+	MetaModifiers::m_fChaosMultiplier = 1.f;
 }
 
 static RegisterEffect registerEffect(EFFECT_META_2X_CHAOS, nullptr, OnStop, OnTick, EffectInfo

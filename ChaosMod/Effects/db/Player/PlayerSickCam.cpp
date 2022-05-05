@@ -43,19 +43,19 @@ static void OnTick()
         {
             camZoomRate = camZoomRate * -1;
         }
-        camZoom += camZoomRate * g_MetaInfo.m_fChaosMultiplier;
+        camZoom += camZoomRate * MetaModifiers::m_fChaosMultiplier;
         
         if (camRotX < -25 || camRotX > 25)
         {
             camRotXRate = camRotXRate * -1;
         }
-        camRotX += camRotXRate * g_MetaInfo.m_fChaosMultiplier;
+        camRotX += camRotXRate * MetaModifiers::m_fChaosMultiplier;
         
         if (camRotY < -35 || camRotY > 35)
         {
             camRotYRate = camRotYRate * -1;
         }
-        camRotY += camRotYRate * g_MetaInfo.m_fChaosMultiplier;
+        camRotY += camRotYRate * MetaModifiers::m_fChaosMultiplier;
     }
 
     SET_CAM_ACTIVE(sickCamera, true);

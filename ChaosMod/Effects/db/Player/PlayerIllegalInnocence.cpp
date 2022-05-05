@@ -7,7 +7,7 @@
 #include <stdafx.h>
 
 #pragma region variable declarations
-#define WAIT_TIME (5000 / g_MetaInfo.m_fChaosMultiplier) // ms. before police are angry at your innocence
+#define WAIT_TIME (5000 / MetaModifiers::m_fChaosMultiplier) // ms. before police are angry at your innocence
 
 static DWORD64 m_timeReserve;
 static DWORD64 m_lastTick = 0;
@@ -96,7 +96,7 @@ static void OnTick()
 		if (m_timeReserve < tickDelta) {
 			if (GET_TIME_SINCE_LAST_DEATH() > 10000 || GET_TIME_SINCE_LAST_DEATH() == -1) {// Give grace period
 				m_timeReserve = WAIT_TIME;
-				lastWantedLevel = min(4, lastWantedLevel + g_MetaInfo.m_fChaosMultiplier);
+				lastWantedLevel = min(4, lastWantedLevel + MetaModifiers::m_fChaosMultiplier);
 				SET_PLAYER_WANTED_LEVEL(player, lastWantedLevel, false);
 				SET_PLAYER_WANTED_LEVEL_NOW(player, true);
 				return;

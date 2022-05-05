@@ -50,7 +50,7 @@ static void OnTick()
 				Vector3 launchPos = Util::GetGameplayCamOffsetInWorldCoords(Vector3::Init(0, 0, 0));
 				Vector3 targPos = Util::GetGameplayCamOffsetInWorldCoords(Vector3::Init(0, 10000, 0));
 
-				int rayHandle = _START_SHAPE_TEST_RAY(launchPos.x, launchPos.y, launchPos.z, targPos.x, targPos.y, targPos.z, 12, player, 7);
+				int rayHandle = START_SHAPE_TEST_LOS_PROBE(launchPos.x, launchPos.y, launchPos.z, targPos.x, targPos.y, targPos.z, 12, player, 7);
 				if (rayHandle != 0)
 				{
 					BOOL didHit;
@@ -132,18 +132,18 @@ static void OnTick()
 		if (selectedOffsets.size() > 0)
 		{
 			Ped player = PLAYER_PED_ID();
-			Entity weapon = GET_CURRENT_PED_WEAPON_ENTITY_INDEX(player);
+			Entity weapon = GET_CURRENT_PED_WEAPON_ENTITY_INDEX(player, 0);
 			for (PedHitInfo info : selectedOffsets)
 			{
 				if (DOES_ENTITY_EXIST(info.pedHandle))
 				{
 					Vector3 weaponCoord = GET_ENTITY_COORDS(weapon, false);
 					Vector3 targPos = GET_PED_BONE_COORDS(info.pedHandle, info.boneIdx, 0, 0, 0);
-					for (int i = 0; i < g_MetaInfo.m_fChaosMultiplier; i++)
+					for (int i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 					{
 						SHOOT_SINGLE_BULLET_BETWEEN_COORDS(weaponCoord.x, weaponCoord.y, weaponCoord.z, targPos.x, targPos.y, targPos.z, 5, true, weaponHash, player, true, false, 24000);
 						
-						if (i + 1 < g_MetaInfo.m_fChaosMultiplier)
+						if (i + 1 < MetaModifiers::m_fChaosMultiplier)
 						{
 							WAIT(100);
 						}

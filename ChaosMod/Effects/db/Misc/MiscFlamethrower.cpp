@@ -72,8 +72,8 @@ static void OnTick()
 		if (animationHandleByPed.count(ped) < 1)
 		{
 			USE_PARTICLE_FX_ASSET("core");
-			Entity weapon = GET_CURRENT_PED_WEAPON_ENTITY_INDEX(ped);
-			int handle = START_PARTICLE_FX_LOOPED_ON_ENTITY("ent_sht_flame", weapon, 1, 0, 0, 90, 0, 90, 2 * g_MetaInfo.m_fChaosMultiplier, false, false, false);
+			Entity weapon = GET_CURRENT_PED_WEAPON_ENTITY_INDEX(ped, 0);
+			int handle = START_PARTICLE_FX_LOOPED_ON_ENTITY("ent_sht_flame", weapon, 1, 0, 0, 90, 0, 90, 2 * MetaModifiers::m_fChaosMultiplier, false, false, false);
 			ShooterInfo animInfo;
 			animInfo.fxHandle = handle;
 			animationHandleByPed[ped] = animInfo;
