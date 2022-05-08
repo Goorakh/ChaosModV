@@ -4,7 +4,7 @@
 
 #include <stdafx.h>
 
-static float sphereRadius = 10.f;
+#define sphereRadius (10.f / MetaModifiers::m_fChaosMultiplier)
 
 static void OnTick()
 {

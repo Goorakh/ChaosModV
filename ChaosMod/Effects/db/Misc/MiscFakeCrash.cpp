@@ -56,7 +56,7 @@ static void OnStart()
 
 	WAIT(500);
 
-	SleepAllThreads(g_Random.GetRandomInt(3000, 5000));
+	SleepAllThreads(g_Random.GetRandomInt(3000, 5000) * MetaModifiers::m_fChaosMultiplier);
 
 	if (fakeTimer)
 	{

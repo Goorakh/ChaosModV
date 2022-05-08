@@ -5,11 +5,11 @@
 #include <stdafx.h>
 static Camera zoomCamera = 0;
 static float camZoom = 80.f;
-const static float camZoomRate = 0.15f;
-const static float minZoom = 10.f;
-const static float maxZoom = 120.f;
-const static float zoomMidpoint = (maxZoom - minZoom) / 2 + minZoom;
-const static float zoomMultiplier = maxZoom - zoomMidpoint;
+#define camZoomRate (0.15f * MetaModifiers::m_fChaosMultiplier)
+#define minZoom (10.f - approach(9.f))
+#define maxZoom (120.f + approach(10.f))
+#define zoomMidpoint ((maxZoom - minZoom) / 2 + minZoom)
+#define zoomMultiplier (maxZoom - zoomMidpoint)
 
 static void UpdateCamera()
 {

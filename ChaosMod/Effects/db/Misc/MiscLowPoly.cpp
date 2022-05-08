@@ -7,7 +7,7 @@ static void OnStop()
 
 static void OnTick()
 {
-	OVERRIDE_LODSCALE_THIS_FRAME(.04f);
+	OVERRIDE_LODSCALE_THIS_FRAME(.04f / MetaModifiers::m_fChaosMultiplier);
 
 	// By Juhana
 	for (Ped ped : GetAllPeds())

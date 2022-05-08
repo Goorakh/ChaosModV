@@ -23,11 +23,11 @@ static void OnStart()
     sickCamera = CREATE_CAM("DEFAULT_SCRIPTED_CAMERA", 1);
     RENDER_SCRIPT_CAMS(true, true, 10, 1, 1, 1);
     camZoom = 80.f;
-    camZoomRate = g_Random.GetRandomFloat(0.4f, 0.45f) * (g_Random.GetRandomInt(0, 1) ? -1 : 1);
+    camZoomRate = g_Random.GetRandomFloat(0.4f, 0.45f) * (g_Random.GetRandomInt(0, 1) ? -1 : 1) * MetaModifiers::m_fChaosMultiplier;
     camRotX = 0.f;
-    camRotXRate = g_Random.GetRandomFloat(0.4f, 0.5f) * (g_Random.GetRandomInt(0, 1) ? -1 : 1);
+    camRotXRate = g_Random.GetRandomFloat(0.4f, 0.5f) * (g_Random.GetRandomInt(0, 1) ? -1 : 1) * MetaModifiers::m_fChaosMultiplier;
     camRotY = 0.f;
-    camRotYRate = g_Random.GetRandomFloat(0.6f, 0.7f) * (g_Random.GetRandomInt(0, 1) ? -1 : 1);
+    camRotYRate = g_Random.GetRandomFloat(0.6f, 0.7f) * (g_Random.GetRandomInt(0, 1) ? -1 : 1) * MetaModifiers::m_fChaosMultiplier;
 }
 
 static void OnTick()

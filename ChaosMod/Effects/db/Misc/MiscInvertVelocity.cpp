@@ -22,6 +22,7 @@ static void OnStart()
 	for (auto entity : entities)
 	{
 		auto vel = GET_ENTITY_VELOCITY(entity);
+		vel = vel * MetaModifiers::m_fChaosMultiplier; // Break the laws of physics, just for fun
 
 		SET_ENTITY_VELOCITY(entity, -vel.x, -vel.y, -vel.z);
 	}

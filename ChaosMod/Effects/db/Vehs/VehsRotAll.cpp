@@ -34,6 +34,7 @@ static void OnStart()
 			}
 		}
 
+		vel = vel * MetaModifiers::m_fChaosMultiplier;
 		SET_ENTITY_VELOCITY(veh, vel.x, vel.y, vel.z);
 	}
 }

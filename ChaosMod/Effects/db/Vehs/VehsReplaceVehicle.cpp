@@ -6,20 +6,23 @@
 
 static void OnStart()
 {
-	Ped playerPed = PLAYER_PED_ID();
-	if (IS_PED_IN_ANY_VEHICLE(playerPed, false))
+	for (size_t i = 0; i < MetaModifiers::m_fChaosMultiplier; i++)
 	{
-		ReplaceVehicle(GET_VEHICLE_PED_IS_IN(playerPed, false), false);
-	}
-	else
-	{
-		std::vector<SeatPed> peds = { { playerPed, -1 } };
-		Vector3 coords = GET_ENTITY_COORDS(playerPed, 0);
-		float heading = GET_ENTITY_HEADING(playerPed);
-		Vector3 velocity = GET_ENTITY_VELOCITY(playerPed);
-		float forwardSpeed = GET_ENTITY_SPEED(playerPed);
+		Ped playerPed = PLAYER_PED_ID();
+		if (IS_PED_IN_ANY_VEHICLE(playerPed, false))
+		{
+			ReplaceVehicle(GET_VEHICLE_PED_IS_IN(playerPed, false), false);
+		}
+		else
+		{
+			std::vector<SeatPed> peds = { { playerPed, -1 } };
+			Vector3 coords = GET_ENTITY_COORDS(playerPed, 0);
+			float heading = GET_ENTITY_HEADING(playerPed);
+			Vector3 velocity = GET_ENTITY_VELOCITY(playerPed);
+			float forwardSpeed = GET_ENTITY_SPEED(playerPed);
 
-		CreateRandomVehicleWithPeds(0, peds, false, coords, heading, false, velocity, forwardSpeed);
+			CreateRandomVehicleWithPeds(0, peds, false, coords, heading, false, velocity, forwardSpeed);
+		}
 	}
 }
 

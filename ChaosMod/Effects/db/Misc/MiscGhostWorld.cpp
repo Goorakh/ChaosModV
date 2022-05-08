@@ -6,7 +6,7 @@
 
 static int GetAlphaForEntity(Entity entity)
 {
-	return ((sin((entity * 20) + (GET_GAME_TIMER() / 125)) + 1) / 2) * 255;
+	return ((sin((entity * 20 * MetaModifiers::m_fChaosMultiplier) + (GET_GAME_TIMER() / 125.f)) + 1) / 2) * 255;
 }
 
 static void OnTick()

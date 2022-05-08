@@ -21,7 +21,7 @@ static void OnStop()
 
 static void OnTick()
 {
-	Hooks::SetAudioPitch(300);
+	Hooks::SetAudioPitch(300 * MetaModifiers::m_fChaosMultiplier);
 
 	for (Ped pd : GetAllPeds())
 	{

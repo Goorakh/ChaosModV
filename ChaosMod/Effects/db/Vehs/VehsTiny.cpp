@@ -5,7 +5,7 @@
 #include <stdafx.h>
 #include "Memory/Vehicle.h"
 
-static std::map<Vehicle, Vector3> vehicleDefaultSizes;
+static std::map<Vehicle, Vector3> lastVehicleSizes;
 
 static bool VectorEquals(Vector3 vec1, Vector3 vec2)
 {
@@ -24,14 +24,11 @@ static void OnTick()
 
 			Vector3 vehicleSize = Vector3(rightVector.Length(), forwardVector.Length(), upVector.Length());
 
-			if (!vehicleDefaultSizes.contains(veh))
-			{
-				vehicleDefaultSizes[veh] = vehicleSize;
-			}
+			lastVehicleSizes[veh] = vehicleSize;
 
-			if (VectorEquals(vehicleDefaultSizes[veh], vehicleSize))
+			if (!VectorEquals(lastVehicleSizes[veh], vehicleSize))
 			{
-				Memory::SetVehicleScale(veh, 0.5f);
+				Memory::SetVehicleScale(veh, 0.5f / MetaModifiers::m_fChaosMultiplier);
 			}
 		}
 	}
@@ -39,7 +36,7 @@ static void OnTick()
 
 static void OnStop()
 {
-	vehicleDefaultSizes.clear();
+	lastVehicleSizes.clear();
 }
 
 static RegisterEffect registerEffect(EFFECT_VEHS_TINY, nullptr, OnStop, OnTick, EffectInfo

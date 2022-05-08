@@ -22,6 +22,8 @@ static void OnTick()
 			{
 				velFactor = 60.f;
 			}
+
+			velFactor *= MetaModifiers::m_fChaosMultiplier;
 			Memory::ApplyForceToEntity(veh, 0, vel.x * -velFactor, vel.y * -velFactor, vel.z * -velFactor, .0f, .0f, .0f, 0, true, true, true, false, true);
 			
 		}

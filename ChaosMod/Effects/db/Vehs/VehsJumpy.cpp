@@ -14,7 +14,7 @@ static void OnTick()
 		{
 			if (veh != playerVeh && !IS_ENTITY_IN_AIR(veh))
 			{
-				Memory::ApplyForceToEntityCenterOfMass(veh, 0, .0f, .0f, 500.f, true, false, true, true);
+				Memory::ApplyForceToEntityCenterOfMass(veh, 0, .0f, .0f, 500.f * MetaModifiers::m_fChaosMultiplier, true, false, true, true);
 			}
 		}
 	}

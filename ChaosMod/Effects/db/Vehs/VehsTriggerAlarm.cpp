@@ -5,7 +5,7 @@ static void OnTick()
 	static auto lastTick = GET_GAME_TIMER();
 	auto curTick = GET_GAME_TIMER();
 
-	if (lastTick < curTick - 2000)
+	if (lastTick < curTick - (2000 / MetaModifiers::m_fChaosMultiplier))
 	{
 		lastTick = curTick;
 

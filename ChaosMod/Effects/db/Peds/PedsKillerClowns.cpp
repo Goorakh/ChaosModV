@@ -96,7 +96,7 @@ static void OnTick()
 		}
 	}
 
-	if (clownEnemies.size() < maxClownsToSpawn && current_time > spawnTimer + 2000)
+	if (clownEnemies.size() < (maxClownsToSpawn * MetaModifiers::m_fChaosMultiplier) && current_time > spawnTimer + (2000 / MetaModifiers::m_fChaosMultiplier))
 	{
 		spawnTimer = current_time;
 		Vector3 spawnPos = getRandomOffsetCoord(playerPos, 10, 25);

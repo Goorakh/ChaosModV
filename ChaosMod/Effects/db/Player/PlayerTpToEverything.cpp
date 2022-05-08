@@ -20,7 +20,7 @@ static void OnTick()
 	if (currentTick - lastTpTime >= currentTpWaitTime)
 	{
 		lastTpTime = currentTick;
-		currentTpWaitTime = g_Random.GetRandomInt(5000, 8000);
+		currentTpWaitTime = g_Random.GetRandomInt(5000, 8000) / MetaModifiers::m_fChaosMultiplier;
 
 		std::vector<Entity> allEntities = {};
 		for (Ped ped : GetAllPeds())

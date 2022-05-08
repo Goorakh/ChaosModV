@@ -6,7 +6,7 @@ static void OnTick()
 	{
 		if (IS_HORN_ACTIVE(veh))
 		{
-			Memory::ApplyForceToEntity(veh, 0, .0f, 50.f, .0f, .0f, .0f, .0f, 0, true, true, true, false, true);
+			Memory::ApplyForceToEntity(veh, 0, .0f, 50.f * MetaModifiers::m_fChaosMultiplier, .0f, .0f, .0f, .0f, 0, true, true, true, false, true);
 		}
 	}
 }

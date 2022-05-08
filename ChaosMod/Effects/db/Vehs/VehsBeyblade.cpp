@@ -17,16 +17,16 @@ static void OnTick()
 {
 	int count = 5;
 
-	float force = 100;
-	float velocityMultiplier = 3;
+	float force = 100 * MetaModifiers::m_fChaosMultiplier;
+	float velocityMultiplier = 3 * MetaModifiers::m_fChaosMultiplier;
 	for (Vehicle veh : GetAllVehs())
 	{
 		bool doBeyblade = IS_VEHICLE_SEAT_FREE(veh, -1, false) ? true : !IS_PED_A_PLAYER(GET_PED_IN_VEHICLE_SEAT(veh, -1, false));
 
 		if (doBeyblade)
 		{
-			Memory::ApplyForceToEntity(veh, 3, force, 0, 0, 0, 4, 0, 0, true, true, true, true, true);
-			Memory::ApplyForceToEntity(veh, 3, -force, 0, 0, 0, -4, 0, 0, true, true, true, true, true);
+			Memory::ApplyForceToEntity(veh, 3, force, 0, 0, 0, 4 * MetaModifiers::m_fChaosMultiplier, 0, 0, true, true, true, true, true);
+			Memory::ApplyForceToEntity(veh, 3, -force, 0, 0, 0, -4 * MetaModifiers::m_fChaosMultiplier, 0, 0, true, true, true, true, true);
 			SET_ENTITY_INVINCIBLE(veh, true);
 			SET_VEHICLE_REDUCE_GRIP(veh, true);
 			if (GET_ENTITY_SPEED(veh) < 10)

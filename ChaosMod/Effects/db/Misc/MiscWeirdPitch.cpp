@@ -9,7 +9,7 @@ static void OnStop()
 
 static void OnTick()
 {
-	Hooks::SetAudioPitch(g_Random.GetRandomInt(-900, 2000));
+	Hooks::SetAudioPitch(g_Random.GetRandomInt(-900, 2000) * MetaModifiers::m_fChaosMultiplier);
 }
 
 static RegisterEffect registerEffect(EFFECT_WEIRD_PITCH, nullptr, OnStop, OnTick, EffectInfo
