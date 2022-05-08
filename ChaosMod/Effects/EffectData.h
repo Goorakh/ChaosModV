@@ -16,10 +16,10 @@ struct EffectData
 	std::string FakeName;
 	std::string CustomName;
 	std::string Id;
-	float Weight = WeightMult;
+	float Weight = 5.f;
 	int CustomTime = -1;
 	int WeightMult = 5;
-	int Shortcut = 0;
+	int ShortcutKeycode = 0;
 	EEffectTimedType TimedType = EEffectTimedType::Unk;
 	std::string GroupType;
 
@@ -41,7 +41,8 @@ public:
 
 	inline bool ExcludedFromVoting() const
 	{
-		return static_cast<bool>(Attributes & EEffectAttributes::ExcludedFromVoting);
+		return static_cast<bool>(Attributes & EEffectAttributes::ExcludedFromVoting)
+			|| IsMeta() || IsUtility();
 	}
 
 	inline bool HasCustomName() const
