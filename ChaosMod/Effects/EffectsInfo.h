@@ -4,6 +4,7 @@
 #include "EEffectExecutionType.h"
 
 #include <unordered_map>
+#include <vector>
 
 enum EEffectType : int
 {
@@ -322,6 +323,7 @@ enum EEffectType : int
 	EFFECT_MISC_WATER,
 	EFFECT_VEHS_PROP_MODELS,
 	EFFECT_VEHS_TINY,
+	EFFECT_META_EFFECT_REINVOKE,
 	EFFECT_META_2X_CHAOS,
 	_EFFECT_ENUM_MAX
 };

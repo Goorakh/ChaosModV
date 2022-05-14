@@ -2,6 +2,7 @@
 
 #include "Component.h"
 
+#include "../Effects/Effect.h"
 #include "../Effects/EffectThreads.h"
 #include "../Effects/EffectData.h"
 #include "../Effects/EffectIdentifier.h"
@@ -10,6 +11,7 @@
 #include <vector>
 #include <array>
 #include <memory>
+#include <list>
 
 #define _NODISCARD [[nodiscard]]
 
@@ -78,6 +80,7 @@ private:
 
 	std::vector<ActiveEffect> m_rgActiveEffects;
 	std::vector<RegisteredEffect*> m_rgPermanentEffects;
+	std::list<RegisteredEffect*> m_rgDispatchedEffectsLog;
 
 	bool m_bEnableNormalEffectDispatch = true;
 
@@ -117,16 +120,18 @@ public:
 	void DrawTimerBar();
 	void DrawEffectTexts();
 
-	bool _NODISCARD ShouldDispatchEffectNow() const;
+	_NODISCARD bool ShouldDispatchEffectNow() const;
 
-	int _NODISCARD GetRemainingTimerTime() const;
+	_NODISCARD int GetRemainingTimerTime() const;
 
-	void DispatchEffect(const EffectIdentifier& effectIdentifier, const char* szSuffix = nullptr);
+	void DispatchEffect(const EffectIdentifier& effectIdentifier, const char* szSuffix = nullptr, bool bAddToLog = true);
 	void DispatchRandomEffect(const char* szSuffix = nullptr);
 
 	void ClearEffects(bool bIncludePermanent = true);
 	void ClearActiveEffects(const EffectIdentifier& exclude = EffectIdentifier());
 	void ClearMostRecentEffect();
+
+	std::vector<RegisteredEffect*> GetRecentEffects(int distance, EEffectType ignore = EFFECT_INVALID) const;
 
 	void Reset();
 	void ResetTimer();

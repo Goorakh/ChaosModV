@@ -9,7 +9,7 @@ static void OnTickLow()
 {
 	// Multiplier = 1: GravityLevel = 1
 	// Multiplier = 2: GravityLevel = 2
-	SET_GRAVITY_LEVEL(min(MetaModifiers::m_fChaosMultiplier, 3));
+	SET_GRAVITY_LEVEL(std::min(MetaModifiers::m_fChaosMultiplier, 3.f));
 }
 
 static RegisterEffect registerEffect1(EFFECT_LOW_GRAV, nullptr, OnStop, OnTickLow, EffectInfo
@@ -25,7 +25,7 @@ static void OnTickVeryLow()
 {
 	// Multiplier = 1: GravityLevel = 2
 	// Multiplier = 2: GravityLevel = 3
-	SET_GRAVITY_LEVEL(min(1 + MetaModifiers::m_fChaosMultiplier, 3));
+	SET_GRAVITY_LEVEL(std::min(1 + MetaModifiers::m_fChaosMultiplier, 3.f));
 }
 
 static RegisterEffect registerEffect2(EFFECT_VERY_LOW_GRAV, nullptr, OnStop, OnTickVeryLow, EffectInfo

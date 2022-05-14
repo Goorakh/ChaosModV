@@ -26,7 +26,7 @@ static void OnTick()
 			// Decrease speed with multiplier, this makes the resulting game speed slower if multiplier is greater
 			speed /= MetaModifiers::m_fChaosMultiplier;
 
-			gameSpeed = max(min(speed, 4.f) / 4, 0.2);
+			gameSpeed = std::max(std::min(speed, 4.f) / 4, 0.2f);
 		}
 		SET_TIME_SCALE(gameSpeed);
 	}

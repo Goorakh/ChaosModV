@@ -96,7 +96,7 @@ static void OnTick()
 		if (m_timeReserve < tickDelta) {
 			if (GET_TIME_SINCE_LAST_DEATH() > 10000 || GET_TIME_SINCE_LAST_DEATH() == -1) {// Give grace period
 				m_timeReserve = WAIT_TIME;
-				lastWantedLevel = min(4, lastWantedLevel + MetaModifiers::m_fChaosMultiplier);
+				lastWantedLevel = std::min(4.f, lastWantedLevel + MetaModifiers::m_fChaosMultiplier);
 				SET_PLAYER_WANTED_LEVEL(player, lastWantedLevel, false);
 				SET_PLAYER_WANTED_LEVEL_NOW(player, true);
 				return;

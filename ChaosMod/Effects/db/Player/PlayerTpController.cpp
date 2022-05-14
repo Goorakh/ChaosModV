@@ -318,7 +318,7 @@ static RegisterEffect registerEffectMission(EFFECT_TP_MISSION, OnStartMission, E
 	}
 );
 
-static struct FakeTeleportInfo
+struct FakeTeleportInfo
 {
 	EEffectType type;
 	Vector3 playerPos;

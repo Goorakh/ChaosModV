@@ -23,7 +23,7 @@ static void OnTick()
 		}
 		if (IS_CONTROL_PRESSED(0, 71)) //Forward
 		{
-			SET_VEHICLE_FORWARD_SPEED(veh, min(maxSpeed * 3, currentSpeed + 0.3) * MetaModifiers::m_fChaosMultiplier);
+			SET_VEHICLE_FORWARD_SPEED(veh, std::min(maxSpeed * 3.f, currentSpeed + 0.3f) * MetaModifiers::m_fChaosMultiplier);
 		}
 
 		if (vehClass == 14 || !IS_VEHICLE_ON_ALL_WHEELS(veh)) // Allow Steering if not "on ground" or boat in water

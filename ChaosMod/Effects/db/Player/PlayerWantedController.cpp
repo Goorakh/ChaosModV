@@ -19,7 +19,7 @@ static void OnStartPlusTwo()
 {
 	Ped player = PLAYER_ID();
 
-	SET_PLAYER_WANTED_LEVEL(player, min(5, PLAYER::GET_PLAYER_WANTED_LEVEL(player) + (2 * MetaModifiers::m_fChaosMultiplier)), false);
+	SET_PLAYER_WANTED_LEVEL(player, std::min(5.f, PLAYER::GET_PLAYER_WANTED_LEVEL(player) + (2 * MetaModifiers::m_fChaosMultiplier)), false);
 	SET_PLAYER_WANTED_LEVEL_NOW(player, false);
 }
 

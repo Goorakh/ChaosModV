@@ -22,11 +22,11 @@ static void OnTick()
 
 	if (currentBoxWidth < maxWidth)
 	{
-		currentBoxWidth = min(currentBoxWidth + 0.01, maxWidth);
+		currentBoxWidth = std::min(currentBoxWidth + 0.01, maxWidth);
 	}
 	else if (currentBoxWidth > maxWidth)
 	{
-		currentBoxWidth = max(currentBoxWidth - 0.01, maxWidth);
+		currentBoxWidth = std::max(currentBoxWidth - 0.01, maxWidth);
 	}
 }
 
